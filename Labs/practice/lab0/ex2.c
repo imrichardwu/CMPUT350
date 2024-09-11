@@ -12,11 +12,14 @@ struct Matrix {
 void init(struct Matrix *m, int r, int c) {
     m->rows = r;  
     m->cols = c;   
-    m->a = (double *)calloc(r * c, sizeof(double));  // Allocate memory for r*c elements
+    m->a = (double*)calloc(r * c, sizeof(double));
     if (m->a == NULL) {  // Check if memory allocation failed
         fprintf(stderr, "Memory allocation failed\n");  
         exit(1);  // Exit the program if memory allocation failed
     }
+    for(int i = 0; i < r*c; i++) {
+        printf("%d\n", (int)m->a[i]);
+    };
 }
 
 // free memory associated with matrix pointed to by m
