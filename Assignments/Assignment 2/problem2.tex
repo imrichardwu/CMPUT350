@@ -1,0 +1,102 @@
+\documentclass{article}
+\usepackage{amsmath}
+\begin{document}
+
+\section*{Solutions}
+
+\begin{enumerate}
+    \item[(a)] \textbf{Prove that optimal heuristics (i.e., $h^*(n)$) are consistent.}
+    
+    \textbf{Proof:}
+    
+    The optimal heuristic $h^*(n)$ represents the actual minimal cost from node $n$ to the goal.
+
+    A heuristic $h(n)$ is consistent if, for every node $n$ and each successor $n'$, the following inequality holds:
+    \[
+    h(n) \leq c(n, n') + h(n')
+    \]
+    where $c(n, n')$ is the cost of reaching $n'$ from $n$.
+
+    Since $h^*(n)$ is the true minimal cost from $n$ to the goal, we consider the path from $n$ to the goal that goes through $n'$. Then:
+    \[
+    h^*(n) = c(n, n') + h^*(n')
+    \]
+    if the optimal path passes through $n'$, or
+    \[
+    h^*(n) \leq c(n, n') + h^*(n')
+    \]
+    if it does not (since $h^*(n)$ is the minimal cost).
+
+    In both cases, we have:
+    \[
+    h^*(n) \leq c(n, n') + h^*(n')
+    \]
+    Therefore, $h^*(n)$ satisfies the consistency condition and is a consistent heuristic.
+
+    \item[(b)] \textbf{Prove: If $h_1(n), \ldots, h_k(n)$ are admissible, so is $h(n) = \max(h_1(n), \ldots, h_k(n))$.}
+    
+    \textbf{Proof:}
+    
+    Since each $h_i(n)$ is admissible, we have:
+    \[
+    h_i(n) \leq h^*(n) \quad \text{for all } i = 1, 2, \ldots, k.
+    \]
+    Therefore,
+    \[
+    h(n) = \max\{h_1(n), \ldots, h_k(n)\} \leq h^*(n).
+    \]
+    Thus, $h(n)$ does not overestimate the true cost to reach the goal and is admissible.
+
+    \item[(c)] \textbf{Prove: If $h_1(n), \ldots, h_k(n)$ are consistent, so is $h(n) = \max(h_1(n), \ldots, h_k(n))$.}
+    
+    \textbf{Proof:}
+    
+    For each $h_i(n)$, the consistency condition holds:
+    \[
+    h_i(n) \leq c(n, n') + h_i(n') \quad \text{for all } i.
+    \]
+    Taking the maximum over all $h_i(n)$:
+    \[
+    h(n) = \max\{h_1(n), \ldots, h_k(n)\} \leq c(n, n') + \max\{h_1(n'), \ldots, h_k(n')\} = c(n, n') + h(n').
+    \]
+    Therefore, $h(n)$ satisfies the consistency condition and is consistent.
+
+    \item[(d)] \textbf{Disprove: If $h_1(n), \ldots, h_k(n)$ are admissible, so is $h(n) = h_1(n) + \ldots + h_k(n)$.}
+    
+    \textbf{Counterexample:}
+    
+    Let $k = 2$ and consider a node $n$ where:
+    \[
+    h_1(n) = 1, \quad h_2(n) = 1.
+    \]
+    Both $h_1(n)$ and $h_2(n)$ are admissible since they do not overestimate the true cost $h^*(n) = 1$.
+
+    Compute the combined heuristic:
+    \[
+    h(n) = h_1(n) + h_2(n) = 1 + 1 = 2.
+    \]
+    Since $h(n) = 2 > h^*(n) = 1$, the heuristic $h(n)$ overestimates the true cost and is not admissible.
+
+    Therefore, $h(n) = h_1(n) + \ldots + h_k(n)$ is not necessarily admissible.
+
+    \item[(e)] \textbf{Prove: If $h_1(n), \ldots, h_k(n)$ are admissible, so is $h(n) = \dfrac{h_1(n) + \ldots + h_k(n)}{k}$.}
+    
+    \textbf{Proof:}
+    
+    Since each $h_i(n)$ is admissible:
+    \[
+    h_i(n) \leq h^*(n) \quad \text{for all } i.
+    \]
+    Summing over all heuristics:
+    \[
+    h_1(n) + \ldots + h_k(n) \leq k \cdot h^*(n).
+    \]
+    Dividing both sides by $k$:
+    \[
+    h(n) = \dfrac{h_1(n) + \ldots + h_k(n)}{k} \leq h^*(n).
+    \]
+    Therefore, $h(n)$ does not overestimate the true cost to reach the goal and is admissible.
+
+\end{enumerate}
+
+\end{document}
