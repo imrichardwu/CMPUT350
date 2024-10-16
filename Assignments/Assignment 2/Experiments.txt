@@ -1,2 +1,64 @@
 Describe your experimental setup and your results.
 
+Experimental Setup
+
+Simulation Parameters
+
+- Map Dimensions: The simulations were conducted on a square map with dimensions 700 units by 700 units.
+- Unit Types: Each team consisted of an equal number of Marines and Tanks.
+- Unit Counts Tested: 20, 50, 100, and 300 Marines and Tanks per team, resulting in total unit counts of 40, 100, 200, and 600 units per team.
+- Bounce Mechanic: The bounce parameter was set to true, allowing units to bounce off walls upon collision.
+- Attack Policies:
+  - Red Team: Attack Weakest, Attack Closest, Attack Most Dangerous.
+  - Blue Team: Attack Weakest, Attack Closest, Attack Most Dangerous.
+- Total Combinations: All combinations of Red and Blue team policies were tested, resulting in 9 policy combinations.
+- Number of Runs: Each unique combination was simulated 100 times with different random seeds to ensure statistical significance.
+- Total Simulations: 3,600 simulations were conducted (4 unit counts × 9 policy combinations × 100 runs).
+
+For each simulation run, I recorded:
+
+- UnitCount: Number of Marines and Tanks per team.
+- RedPolicyName: Attack policy used by the Red team.
+- BluePolicyName: Attack policy used by the Blue team.
+- Result: Outcome of the simulation (RedWin, BlueWin, or Draw).
+- Count: Number of times a specific result occurred.
+- TotalRuns: Total number of runs for the scenario (always 100).
+- Percentage: Percentage of each result out of the total runs.
+
+1. Attack Closest vs. Attack Closest:
+   - Result: 100% Draws across all unit counts.
+   - Interpretation: When both teams prioritize attacking the closest enemy units, engagements become symmetrical, leading to stalemates where neither side gains a decisive advantage.
+
+2. Attack Most Dangerous Policy:
+   - Lower Unit Counts (20, 50, 100):
+     - Red Team: High win rates when facing Blue's Attack Closest.
+     - Example: At unit count 50, Red wins about 98% of the time against Blue's Attack Closest.
+   - Higher Unit Count (300):
+     - Effectiveness Decreases: Red's Attack Most Dangerous leads to an appromiate of 60% wins against Blue's Attack Most Dangerous but only 20% against Blue's Attack Closest.
+     - Interpretation: In large-scale battles, the chaotic environment reduces the effectiveness of targeting the most dangerous units, possibly due to overwhelmed unit numbers and reduced precision.
+
+3. Attack Weakest Policy:
+   - Lower to Mid Unit Counts (20, 50, 100):
+     - Red Team: Strong performance against Blue's Attack Closest.
+     - Example: At unit count 100, Red wins 100% against Blue's Attack Closest.
+   - Higher Unit Count (300):
+     - Mixed Results: Red's Attack Weakest shows improved performance with about 60% wins against Blue's Attack Weakest but lower effectiveness against Blue's Attack Closest.
+     - Interpretation: Targeting the weakest units is effective in smaller battles but becomes less advantageous in larger battles where tactical positioning plays a more significant role.
+
+4. Bounce Mechanic Influence:
+   - High Bounce Activity: Enabled bouncing likely contributes to the high number of draws when both teams use Attack Closest, as units continuously rebound off walls without achieving decisive engagements.
+   - Strategic Implications: Bouncing allows units to re-engage multiple times, prolonging battles and increasing the likelihood of mutual eliminations or stalemates.
+
+5. Unit Count Impact:
+   - Smaller Battles (20, 50): Strategic targeting (Most Dangerous, Weakest) significantly influences outcomes.
+   - Larger Battles (100, 300): The sheer number of units dilutes the impact of specific targeting strategies, making positional tactics (like Attack Closest) more dominant or leading to chaotic engagements with mixed results.
+
+Conclusion:
+
+Based on the experimental results:
+
+- Attack Most Dangerous emerges as the strongest policy in small to medium-sized battles (unit counts 20, 50, 100), particularly when facing opponents using Attack Closest. This strategy allows teams to neutralize high-threat units effectively, reducing the overall damage received.
+
+- Attack Closest consistently results in draws when both teams employ it, indicating a lack of decisive advantage in symmetrical targeting strategies. However, when opposing an Attack Weakest policy, Attack Closest maintains a moderate advantage, especially at higher unit counts.
+
+- Attack Weakest demonstrates variable effectiveness. It performs exceptionally well against Attack Closest in smaller engagements but loses its edge in larger battles against more aggressive targeting strategies.

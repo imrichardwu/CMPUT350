@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.30)  5 OCT 2024 23:05
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.30)  7 OCT 2024 10:49
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -91,7 +91,8 @@ LaTeX Info: Redefining \] on input line 2954.
 File: l3backend-pdftex.def 2024-02-20 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count274
 \l__pdf_internal_box=\box53
-) (./problem2.aux)
+)
+No file problem2.aux.
 \openout1 = `problem2.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 3.
@@ -137,10 +138,10 @@ L3 programming layer <2024-02-20>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 1147 strings out of 474116
- 17677 string characters out of 5743682
+ 1144 strings out of 474116
+ 17626 string characters out of 5743682
  1933187 words of memory out of 5000000
- 23567 multiletter control sequences out of 15000+600000
+ 23566 multiletter control sequences out of 15000+600000
  559436 words of font info for 41 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  56i,6n,65p,290b,188s stack positions out of 10000i,1000n,20000p,200000b,200000s

@@ -97,6 +97,6 @@ int main() {
     Expr *F = new TimesExpr(D, E);
     Expr *G = new ConstExpr(10);
     Expr *H = new PlusExpr(F, G);
-    
+    delete H;
     std::cout << H->value() << std::endl;
 }
