@@ -168,6 +168,10 @@ public:
 
 private:
     // add private members in file below
+    bool canOccupy(int size, int x, int y, Tile tile) const;
+    bool canMove(int size, int x1, int y1, int x2, int y2, Tile tile) const;
+    int heuristic(int x1, int y1, int x2, int y2) const;
+    void computeConnectedComponents(int size, Tile tileType) const;
 
 #include "GridPriv.h"
 };

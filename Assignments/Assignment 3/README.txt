@@ -1,7 +1,7 @@
 CMPUT 350  Assignment 3
 -----------------------
 
-Student Id:
+Student Id: 1754747
             ----------------
 
 
@@ -21,5 +21,5 @@ contributed:
 Your name in lieu of a signature:
 
 
-
+            Richard Wu
            -----------------------
