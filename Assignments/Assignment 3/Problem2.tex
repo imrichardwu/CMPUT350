@@ -1,0 +1,74 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{tikz}
+\begin{document}
+
+\section*{PRA* Map Abstraction Solution}
+
+(a) Apply the clique-based abstraction used in PRA* (ai-part2, page 12) to the graph below. For this, scan the nodes from top-left to bottom-right - row by row, identifying new maximum size complete subgraphs of size up to 4 that can be abstracted into new nodes in the next abstraction level - starting from the current node and scanning its unvisited neighborhood. Continue this process until only one node remains, showing the resulting abstraction levels and indicating which nodes got abstracted by what node in the process. Use uppercase letters A, B, C, ... to name new abstract nodes and explain all steps.
+
+\begin{verbatim}
+    a-b-c-d-e-f-g
+    |   |   |   |
+    h-i j-k l-m-n
+    |   |       |
+    o-p-q-r-s-t-u
+\end{verbatim}
+
+\textbf{Solution:}
+
+\begin{verbatim}
+    Level 1:
+    A = {a, b, h, i}
+    B = {c, d, j, k}
+    C = {e, f, l, m}
+    D = {g, n}
+    E = {o, p, q, r}
+    F = {s, t, u}
+
+    Level 2:
+    G = {A, B}
+    H = {C, D}
+    I = {E, F}
+
+    Level 3:
+    J = {G, H, I}
+\end{verbatim}
+
+(b) Assuming the original graph size is $N = 4^n$ and clique-based abstraction being able to always group 4 nodes to form a new abstract node in each step:
+
+\begin{enumerate}
+    \item[(i)] The number of nodes in the $k$-th abstraction level is given by:
+    \[
+    N_k = \frac{N}{4^k} = \frac{4^n}{4^k} = 4^{n-k}
+    \]
+    For $k = 0$, we have the original graph with $4^n$ nodes. For $k = 1$, we have $4^{n-1}$ nodes, and so on.
+
+    \item[(ii)] The abstraction level that contains exactly one node is the level where:
+    \[
+    4^{n-k} = 1
+    \]
+    Solving for $k$, we find $k = n$. Thus, the $n$-th abstraction level contains exactly one node.
+
+    \item[(iii)] If we reach one node at abstraction level $n = 2u$ for an integer $u$, then abstraction level $u$ consists of:
+    \[
+    N_u = 4^{n-u} = 4^{2u-u} = 4^u
+    \]
+    In relation to the original number of nodes $N = 4^n$, we have:
+    \[
+    N_u = \sqrt{N}
+    \]
+    Thus, abstraction level $u$ consists of $\sqrt{N}$ nodes.
+
+    \item[(iv)] To prove that the clique abstraction used in PRA* preserves connectivity, we need to show both directions:
+    
+    \begin{itemize}
+        \item[$(\Rightarrow)$] If there is a path from node $A$ to node $B$ in the original map, then there must be a path from abstract node $A'$ to abstract node $B'$ in the abstract map. This is because $A$ and $B$ are part of cliques that are abstracted into $A'$ and $B'$, respectively, and the edges between nodes $A$ and $B$ imply connectivity between the abstract nodes $A'$ and $B'$.
+        
+        \item[$(\Leftarrow)$] If there is a path from abstract node $A'$ to abstract node $B'$ in the abstract map, then there must be a corresponding path from one of the nodes in $A'$ to one of the nodes in $B'$ in the original map. This is because $A'$ and $B'$ represent groups of nodes that were connected in the original graph, and the existence of an edge between $A'$ and $B'$ implies that there were corresponding connections between nodes in the original graph.
+    \end{itemize}
+    
+    Therefore, the clique abstraction preserves connectivity by ensuring that any path in the original graph is represented in the abstract graph and vice versa.
+\end{enumerate}
+
+\end{document}
