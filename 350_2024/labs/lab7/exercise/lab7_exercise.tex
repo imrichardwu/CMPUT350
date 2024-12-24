@@ -1,0 +1,156 @@
+\documentclass[a4paper,11pt]{article}
+\include{../../../latex_headers/lab_header}
+
+
+
+% ---------------------------------- Document ----------------------------------
+\begin{document}
+\pagenumbering{arabic}
+
+\begin{center}
+{\Large CMPUT 350 Lab 7 Exercise Problems}
+\end{center}
+
+\labrules{g++ -Wall -Wextra -Wconversion -Wsign-conversion -O -g -std=c++17 ...}{Histo.h histoMain.cpp Sorter.h sorterMain.cpp}{7}
+
+
+1. Histogram [25 marks]
+
+Implement a program that reads words from \texttt{stdin} and keeps track of word counts
+and when done prints the histogram in non-increasing count order like so:
+
+{\small
+\begin{verbatim}
+    the 392
+    moon 10
+    bar 1
+    clown 1
+\end{verbatim}
+}
+
+In case of identical counts the lexicographically smaller word is printed
+first (e.g., bar before clown above)
+
+\medskip
+
+For this purpose, define class \texttt{Histo} in file \texttt{Histo.h} that has the following
+public methods:
+\begin{cppcode*}{fontsize=\footnotesize,linenos=false}
+// increment count for word w
+void count(const std::string &w) {
+    ... implement
+}
+
+// print histogram in non-increasing count order to stream os
+void print(std::ostream &os) const {
+    ... implement
+}
+\end{cppcode*}
+
+Implement these functions on the spot (i.e., there is no \texttt{Histo.cpp} file). Make
+use of STL containers and algorithms (\texttt{map}, \texttt{vector}, \texttt{sort} ...) as much as
+possible. If unsure about STL data types and algorithms consult your lecture
+notes or the official C/{\CC} reference page.
+
+\medskip 
+
+In file \texttt{histoMain.cpp} implement function \texttt{main()}, which uses \texttt{Histo} for the
+program's task described above. You can assume that each word occurs at most 2
+billion times.
+
+\medskip 
+
+Test it thoroughly and make sure your program doesn't leak memory and is well
+documented.
+
+\medskip 
+
+\textbf{Hints}:
+\begin{itemize}
+    \item \texttt{std::string s; cin >> s;} reads the next word into string variable \texttt{s}
+    \item consider range-based for loops and \texttt{auto}, or \texttt{cbegin()}, \texttt{cend()} when iterating
+    through containers in constant member functions
+    \item sort doesn't work with associative containers because they are sorted implicitly
+\end{itemize}
+
+{\small
+\begin{verbatim}
+    Test input:
+
+    c b a
+    zz zz xx xx zz xx
+    
+    Test output:
+    
+    xx 3
+    zz 3
+    a 1
+    b 1
+    c 1
+\end{verbatim}
+}
+
+
+\linerule 
+
+2. Sorter [15 marks]
+
+
+For this question you will produce a simple class Sorter in file \texttt{Sorter.h} that
+can sort data by different criteria. It must accept some number of points
+given by two coordinates of type \texttt{double} each, specified by \texttt{add\_point(x, y)},
+and store them. Then, when \texttt{print\_sorted\_closest\_to(x, y)} is called, it must
+sort the points based on their distance to the specified coordinates, and
+write them to \texttt{stdout} - one point per line - from closest to
+farthest. Implement all methods of \texttt{Sorter} in \texttt{Sorter.h}
+
+\medskip 
+
+To test class Sorter write a program in \texttt{sorterMain.cpp} that reads $n > 0$ points
+given by 2 \texttt{double} values each from \texttt{stdin} and prints the last $n-1$ points in
+order closest to farthest from the first point.
+
+\medskip 
+
+Make sure your program doesn't leak memory and is well documented. Test it
+thoroughly.
+
+
+\textbf{Hints}:
+\begin{itemize}
+    \item The square root function sqrt is defined in header file cmath. Think
+        about a way around using sqrt, because it is slow
+    \item Consider using a functor object that stores the first point
+\end{itemize}
+
+\pagebreak
+
+{\small
+\begin{verbatim}
+    Test input:
+
+    1 1
+    3 3 
+    2 2 
+    
+    Test output:
+    
+    2 2
+    3 3
+    
+    ===========
+    
+    Test input:
+    
+    1 1
+    2 2 
+    2 2 
+    
+    Test output:
+    
+    2 2
+    2 2
+\end{verbatim}
+}
+
+\end{document}

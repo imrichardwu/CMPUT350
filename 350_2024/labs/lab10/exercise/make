@@ -1,0 +1,2 @@
+g++ -Wall -Wextra -O -std=c++17 solve_main.cpp Solve.cpp
+

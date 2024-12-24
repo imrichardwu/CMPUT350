@@ -1,0 +1,84 @@
+CMPUT 350 Lab Exercise 8 (marked)
+
+Tuesday Nov. 2, 15:30-16:50
+
+Rules:
+
+- You can use all course material and man pages, but no other information such
+  as web pages, books, or written notes. Using other information sources
+  during the exercise constitues cheating
+
+- Your programs must compile without warning using
+
+  g++ -g -Wall -Wextra -std=c++17 -O ...
+
+  on the lab machines. Use ./make2 to compile
+
+- Test your programs with different values. For now, the speed of your
+  program is irrelevant. So don't spend time on optimization
+
+- Your programs must be well structured and documented. Use ctrl-x t
+  in Emacs to pretty-print it. Marks are assigned to functionality,
+  program appearance, and comments
+
+- In case your program hangs, use ctrl-c to terminate it
+
+- Remember that you need to include the appropriate header files. To find out
+  which ones you need for specific functions such as printf, use then man
+  command
+
+- You can access C/C++ documentation at https://en.cppreference.com
+
+Submit the following file to eClass:
+
+    Triang2.cpp
+
+In case eClass submission doesn't work, submit your solution (at most twice)
+by pasting the following line into a terminal:
+
+  mail -s "350 Lab8" michael.buro@gmail.com < Triang2.cpp
+
+=========================================================================
+
+In this exercise you will complete a program that generates a Delaunay
+triangulation by first incrementally generating a triangulation for n points
+in a bounding rectangle and then flipping edges to increase the minimum
+interior angle locally
+
+To get started, download all files into a new folder - individually by
+right-click-save or by extracing all files from ex08.tar (tar xf ex08.tar)
+
+We provide a driver (disp.cpp) that animates the process using OpenGL and a
+working executable (disp) as reference. Please note that after downloading
+this file you have to set its executable flag like so: chmod +x disp
+
+Our driver accepts command line parameters that may be useful for testing. Run
+./disp -h to see a list. To reproduce program runs set seed to != 0 (see test
+scripts test_*)
+
+Your task is to complete functions in Triang2.cpp in which we also provide
+hints. Don't change any other file because you'll only submit Triang2.cpp
+
+Start by reading Triang.h and Triang.cpp, which contain most of the
+implementations already. We encourage you to use our implemented functions in
+your solutions
+
+To compile your program use ./make2
+
+You may change disp.cpp for testing your functions
+
+You can run ./a.out or ./disp from a remote machine provided 
+
+1) you use x2go, or
+
+2) you are using a UNIX environment on your computer (e.g., MacOS, or hosting
+   Ubuntu on Windows + installing an X-Window server)
+
+3) you have an X-Window server running on your own computer and use ssh -X
+   ... to connect to a lab machine (-X forwards X-Window connections, try to
+   run "xeyes" on the lab machine to see if it works)
+
+IMPORTANT: Please note that any crashes you might experience while testing
+your functions are most likely caused by your code, which is assumed to be
+correct by the Delaunay triangulation code that calls them. In such cases, we
+suggest to test your functions independently

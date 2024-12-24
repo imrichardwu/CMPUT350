@@ -1,0 +1,53 @@
+---
+---
+---
+x (0)
+x draws with (0,0)
+
+---
+-o-
+---
+x (1)
+x draws with (0,0)
+
+---
+--o
+---
+x (1)
+x draws with (0,1)
+
+xox
+oxo
+oxo
+x (9)
+draw
+
+-oo
+ooo
+ooo
+x (8)
+a player already won
+
+oxo
+xx-
+oox
+x (8)
+x wins with (2,1)
+
+--o
+-oo
+---
+x (3)
+x loses
+
+-xo
+oox
+xoo
+x (8)
+x draws with (0,0)
+
+---
+-x-
+---
+x (1)
+x wins with (0,0)

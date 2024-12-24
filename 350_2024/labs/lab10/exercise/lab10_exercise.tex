@@ -1,0 +1,100 @@
+\documentclass[a4paper,11pt]{article}
+\include{../../../latex_headers/lab_header}
+
+
+% ---------------------------------- Document ----------------------------------
+\begin{document}
+\pagenumbering{arabic}
+
+\begin{center}
+{\Large CMPUT 350 Lab 10 Exercise Problems}
+\end{center}
+
+\labrules{g++ -Wall -Wextra -O -g -std=c++17 ...}{Solve.cpp}{10}
+
+
+In this exercise you will complete the matrix game tool you worked on in the
+today's prep phase.
+Start by downloading the files provided.
+
+\linerule 
+
+1. [8 marks]
+In file \texttt{Solve.cpp}, implement function
+\begin{cppcode*}{linenos=false}
+void best_response_to_col(const Matrix &A, const Vector &strat2);
+\end{cppcode*}
+which gets invoked when using option -c and is analogous to the
+\texttt{best\_response\_to\_row()} you implemented in the prep phase.
+
+\medskip
+
+Instead of finding a best reponse to a row player strategy, you now need to
+compute and print a best response strategy to a given column player strategy,
+together with the row player's value.
+
+\medskip
+
+Test your implementation by comparing its output to that of \texttt{./solve -c < ...}
+with various input files (\texttt{*.mgc} and some you create).
+
+\linerule 
+
+\newpage 
+
+2. [10 marks]
+In file Solve.cpp, implement function
+\begin{cppcode*}{linenos=false}
+void solve(Matrix &A);
+\end{cppcode*}
+which gets invoked when using option -s.
+
+It reads a payoff matrix for the row player from \texttt{stdin} and computes MiniMax
+strategies for the row and column players and the game value for the row
+player, and writes the results to \texttt{stdout}.
+
+\medskip
+
+Strategies are computed by writing an LP to a file, then running external
+program \texttt{lp\_solve} on that file, and finally extracting results from the output
+it generates.
+
+\medskip
+
+Your task is to write LP representations created from the input payoff matrix
+to the file \texttt{lp\_solve} reads, using the LPs for solving matrix games developed
+in the notes (AI Part 5, pp.25-26).
+See the comments in \texttt{solve()} for details.
+
+\medskip
+
+\textbf{HINT}: Test your implementation by comparing its output to that of \texttt{./solve -s < ...}
+with various input files (\texttt{*.mgs} and some you create).
+Run \texttt{./solve -s < test2x4.mgs} and look at \texttt{p1.lp}, etc. for the expected format of 
+how to write to these files in your solution code.
+
+\medskip
+
+For example, for input \texttt{RPS.mgs} :
+\small{
+\begin{verbatim}
+    3 3
+    0 -1 +1
+    +1 0 -1
+    -1 +1 0
+\end{verbatim}
+}
+
+the output of \texttt{./solve -s < RPS.mgs} is
+\small{
+\begin{verbatim}
+    3 by 3 game
+    +0.000000 -1.000000 +1.000000 
+    +1.000000 +0.000000 -1.000000 
+    -1.000000 +1.000000 +0.000000 
+    value for row player p1: 0
+    strategy p1: 0.333333 0.333333 0.333333
+    strategy p2: 0.333333 0.333333 0.333333
+\end{verbatim}
+}
+\end{document}

@@ -1,0 +1,91 @@
+\documentclass[a4paper,11pt]{article}
+\include{../../../latex_headers/lab_header}
+
+
+% ---------------------------------- Document ----------------------------------
+\begin{document}
+\pagenumbering{arabic}
+
+\begin{center}
+{\Large CMPUT 350 Lab 5 Exercise Problems}
+\end{center}
+
+\labrules{g++ -Wall -Wextra -Wconversion -Wsign-conversion -O -g -std=c++17 ...}{max.cpp point.cpp}{5}
+
+
+1. [20 marks] Function templates
+
+\bigskip 
+
+In file \texttt{max.cpp}:
+\begin{enumerate}[label=\alph*)]
+\item Write function
+
+    \[ \texttt{size\_t index\_of\_max(const int *A, size\_t n)} \]
+
+    which is supposed to return the smallest index of a maximum element in
+    array \texttt{A} that holds \texttt{n} elements. Only use \texttt{<} to compare elements
+
+\item Write function template \texttt{index\_of\_max} that generalizes above function to work
+    with any element type \texttt{T}. You can only assume that \texttt{T} supports operator \texttt{<} ,
+    and nothing else (\textbf{in particular, the CC or AO doesn't have to be supported})
+
+\item Specialize (or overload) the template function for arrays of element types \texttt{char *} and
+    \texttt{const char *} so that the smallest index of a maximum string in
+    lexicographical ordering is returned (hint: use strcmp instead of \texttt{<})
+
+\item Write function \texttt{void print(const int *a, size\_t n);} that prints
+    all array elements to cout using a single space as delimiter
+
+\item Write function template print that works like the function in (d) for
+    arbitrary element types \texttt{T}
+
+\item In \texttt{main()} write test code that populates a few C-arrays of different type,
+    prints them using above print function template, prints the result of the
+    \texttt{index\_of\_max} function call, and complains if a test failed.
+    \textbf{Hint}: When testing \texttt{const char*} versus \texttt{char*},
+    recall that string literals are have the type \texttt{const char *}.
+    How can we explicitly declare string literals to be of type \texttt{char*}?
+    We shouldn't do this in practice ... WHY?
+\end{enumerate}
+
+\bigskip
+
+\linerule 
+
+
+\bigskip
+
+2. [20 marks] Function templates
+
+\bigskip 
+
+In file \texttt{point.cpp}:
+\begin{enumerate}[label=\alph*)]
+\item Write struct template \texttt{Point} that stores two coordinates \texttt{x,y} of arbitrary
+type \texttt{T} and has a constructor that takes two parameters \texttt{(x0,y0)} with which
+\texttt{x,y} are initialized, respectively. Their default values must be \texttt{T\{\}}
+(representing origin coordinate (0)).
+
+\medskip
+
+A print member function also needs to be implemented that writes \texttt{(x,y)} to
+cout.
+\[ \texttt{void print() const ...} \]
+
+\medskip
+
+Finally, struct member \texttt{operator==} needs to be implemented that returns true
+iff the rhs point's coordinates are equal to \texttt{x,y}, respectively.
+
+\item Write function template sum that accepts a const C-array of \texttt{Point} elements,
+    array size \texttt{int n} and returns a \texttt{Point} of the same type representing the sum
+    of all input \texttt{Points} (component-wise)
+\item Write function template find that, like in (b), accepts a const C-array of
+    \texttt{Points} and \texttt{size n}, but also a \texttt{Point p} of the same type and returns the
+    smallest index for which \texttt{p} is equal to an array element, or -1 otherwise
+\item Write test code for (b) and (c) in \texttt{main()}
+\end{enumerate}
+
+
+\end{document}

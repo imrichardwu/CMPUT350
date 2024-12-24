@@ -1,0 +1,66 @@
+Lab 5
+Marker: 
+
+1) [20]
+
+g++ -g -Wall -Wextra -Wconversion -Wsign-conversion -std=c++17 -O max.cpp
+error message(s)                    0/-5
+no errors, but warning(s)           0/-2
+
+Functionality [16]
+
+  a)                                3/3
+  b)                                3/3
+  c)                                3/3
+  d)                                2/2
+  e)                                2/2
+  f)                                3/3
+
+Coding Style [4]
+
+    Indentation                     1/1
+    Consistency                     1/1
+     spaces around operators,
+     variables, (), etc
+     { } placement ...
+
+    Comments                        2/2
+
+Remarks:
+- 
+
+
+
+2) [20]
+
+g++ -Wall -Wextra -Wconversion -Wsign-conversion -std=c++17 -O point.cpp
+error message(s)                    0/-5
+no errors, but warning(s)           0/-2
+
+Functionality [15]
+
+  a)                                3/3
+  b)                                4/4
+  c)                                4/4
+  d)                                4/4
+
+Coding Style [5]
+
+    Using const and ref.            1/1
+      as much as possible
+    
+    Indentation                     1/1
+    Consistency                     1/1
+     spaces around operators,
+     variables, (), etc
+     { } placement ...
+
+    Comments                        2/2
+
+
+Remarks:
+- 
+
+
+
+Total:                              X/40

@@ -1,0 +1,102 @@
+Marking Sheet
+CMPUT 350 Assignment 2
+
+Marker: 
+
+
+Problem 1  [116 marks]
+----------------------
+
+1) Implementation [80]
+
+compile with g++ -Wall -Wextra -std=c++17
+
+warning, no errors:             0/-5
+error:                          0/-15
+
+Marine.C & Tank.C
+-----------------
+[combined score because they are almost identical]
+
+constructor                             4/4
+act                                     8/8
+collision_hook                          8/8
+
+World.C
+-------
+
+move_unit:
+
+  collision[4] correct                  8/8
+  u.pos correct                         8/8
+  collision_hook called                 2/2
+
+destructor                              4/4
+
+attack                                  4/4
+
+rnd_heading                             3/3 
+
+distance2                               4/4 
+
+can_attack                              4/4
+
+enemies_within_attack_range             3/3
+
+random_weakest_target                   3/3
+
+random_closest_target                   3/3
+
+random_most_dangerous_target            3/3
+ 
+red_score                               6/6
+
+Style (comments, indentation, etc.)     5/5
+
+
+Remarks:
+- 
+
+
+2) Experiments [36]
+
+Running sufficiently long tournaments           12/12
+among all policy pairs
+
+Describe the experimental setup                 12/12
+so that experiments are reproducible    
+
+Describe results in terms of aggregate
+scores. Motivating statistical significance.    12/12
+Draw conclusions.
+
+
+
+Remarks:
+- 
+
+
+============================================================================
+
+Problem 2 [40 marks]
+--------------------
+
+Part a)             8/8
+
+Part b)             8/8
+
+Part c)             8/8
+
+Part d)             8/8
+
+Part e)             8/8
+
+
+Remarks:
+-
+
+
+============================================================================
+
+Total:           /156
+

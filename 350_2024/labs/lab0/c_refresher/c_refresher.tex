@@ -1,0 +1,154 @@
+\documentclass[a4paper,11pt]{article}
+\include{../../../latex_headers/lab_header}
+
+% ---------------------------------- Document ----------------------------------
+\begin{document}
+\pagenumbering{arabic}
+
+\begin{center}
+{\Large CMPUT 350 - C Refresher}
+\end{center}
+
+% ------------------------------------------------------------------------------
+
+\section{Hello World}
+Create file \texttt{hello.c} containing this program (copy \& paste):
+\begin{cppcode}
+// this program prints "hello world" to standard output
+// let the compiler know about standard I/O functions
+#include <stdio.h>
+int main() {
+    printf("hello world\n");
+    return 0;
+}
+\end{cppcode}
+Then issue 
+\[ \texttt{gcc -o hello hello.c} \]
+which generates executable file \texttt{./hello} from source file \texttt{hello.c}.
+The program prints "hello world" when being invoked by issuing \texttt{./hello<ENTER>}.
+\texttt{gcc} is the C compiler in the GNU Compiler Collection. \\
+
+In CMPUT 350 we will be using its cousin g++ for compiling C++ programs.
+For projects involving StarCraft you will have to install Windows and Visual.
+C++ on your computer (or in a virtual machine if you use Linux or Mac OS).
+
+
+% ------------------------------------------------------------------------------
+\section{Important \texttt{gcc}/\texttt{g++} command line paramters}
+\begin{itemize}
+    \item -O, -O2, -O3 : optimize executable code at (-O3 fastest)
+    \item -Wall -Wextra -W -Wundef -Wconversion -Wsign-conversion: switch on useful compiler warnings
+    \item -g: generate debug information (for debugger gdb)
+\end{itemize}
+
+To learn more about command line options issue: \texttt{man g++} or \texttt{man gcc}.
+
+% ------------------------------------------------------------------------------
+\section{C Types and Variables}
+\begin{itemize}
+    \item basic: \cppinline{char, short, int, long int, float, double}
+    \item arrays:
+\begin{cppcode}
+int foo[100];       // defines array foo that contains 100 ints
+                    // on the stack, valid indicies are 0.99
+int x = foo[42];    // stores array element with index 42 into variable x
+\end{cppcode}
+    \item pointers:
+\begin{cppcode}
+int x = 5;  // defines int x (on stack)
+int *px = &x;   // address of x is assigned to int pointer px
+                // px no points to x 
+*px = 0;        // px points to x, *px therefore refers to x.
+                // This sets x to 0
+                // & is the address of operator, * is the pointer dereference operator
+\end{cppcode}
+    \item structures: Store data items together using a common name. Access by component name:
+\begin{cppcode}
+struct X {
+    int a, b;           // structure X with components a,b,c,d
+    float c, d;
+};
+
+struct X x;             // variable definition (x has type X)
+x.a = 5;                // assign 5 to structure component a
+printf("%d", x.b);      // print x's b component to stdout
+\end{cppcode}
+\end{itemize}
+
+% ------------------------------------------------------------------------------
+\section{Control Flow}
+\begin{itemize}
+    \item Conditionals:
+\begin{cppcode}
+if (x > 0) {
+    // executed if x > 0
+} else if (x < 0) {     // [optional]
+    // executed if x < 0
+} 
+else {                  // [optional]
+    // executed if x == 0
+} 
+\end{cppcode}
+    \item Loops:
+\begin{cppcode}
+while (x > 0) {     // execute as long as x > 0
+    --x;            // decrease x by 1
+}
+
+int i;
+for (i=0; i < n; ++i) {     // execute for i = 0 .. n-1
+    printf("%d\n", i);
+}
+
+// is equivalent to:
+int i = 0;
+while (i < n) {
+    printf("%d\n", i);
+    ++i;
+}
+\end{cppcode}
+    \item Functions: parameters are passed by value (except for arrays, see below)
+\begin{cppcode}
+// function that returns an int, takes int parameter x, and returns x+1
+int foo(int x) { return x + 1; }
+
+int y = foo(5); // y = 6 after executing this line
+
+// function that takes int array and number of elements
+// as parameter and returns sum of array elements
+int sum(int A[], int n) {
+    int sum = A[0];
+    int i;  // in C++ can be moved inside the for loop
+    for (i=1; i < n; ++i) {
+        sum += A[i];
+    }
+    return sum;
+}
+\end{cppcode}
+\end{itemize} 
+
+In C, arrays are passed by reference. 
+What is actually passed is just a pointer to the first element. 
+Consequently, array parameters don't know the size of the array. 
+So, the size has to be passed separately. \\
+
+Equivalent function definition (but harder to understand: is it a pointer we pass or an array?)
+\begin{cppcode}
+int sum(int *A, int n) {
+    // ...
+}
+\end{cppcode}
+
+
+\section{Memory Allocation}
+\texttt{malloc} allocates m consecutive bytes on heap (requires \texttt{stdlib.h}).
+Since \texttt{malloc} returns a \texttt{void*}, it needs to be cast to the appropriate type:
+\[ \texttt{int *p = (int*) malloc(n * sizeof(int));} \]
+allocates array of n ints on heap and assigns address of first int to \texttt{p}. 
+\texttt{(int*)} is a type cast that convinces the compiler that the returned value is indeed a pointer to int.\\
+
+\texttt{free(p)} returns memory \texttt{p} to the operating system.
+Using \texttt{*p} after this call is a logical error.
+
+
+\end{document}

@@ -1,0 +1,75 @@
+----------------------------------------
+Compiling mainStack.cpp
+ 
+ 
+Running their mainStack
+==370701== Memcheck, a memory error detector
+==370701== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==370701== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==370701== Command: ./mainStack
+==370701== 
+all tests passed
+==370701== 
+==370701== HEAP SUMMARY:
+==370701==     in use at exit: 0 bytes in 0 blocks
+==370701==   total heap usage: 56 allocs, 56 frees, 91,168 bytes allocated
+==370701== 
+==370701== All heap blocks were freed -- no leaks are possible
+==370701== 
+==370701== For lists of detected and suppressed errors, rerun with: -s
+==370701== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+ 
+ 
+Compiling mainStack.cpp with our test runner
+ 
+ 
+Running runner_stack
+all tests passed
+ 
+ 
+----------------------------------------
+----------------------------------------
+----------------------------------------
+----------------------------------------
+Compiling mainSum.cpp
+ 
+ 
+Running their mainSum
+==370723== Memcheck, a memory error detector
+==370723== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==370723== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==370723== Command: ./mainSum
+==370723== 
+0
+55
+210
+5050
+
+0
+55
+210
+5050
+==370723== 
+==370723== HEAP SUMMARY:
+==370723==     in use at exit: 0 bytes in 0 blocks
+==370723==   total heap usage: 2 allocs, 2 frees, 81,920 bytes allocated
+==370723== 
+==370723== All heap blocks were freed -- no leaks are possible
+==370723== 
+==370723== For lists of detected and suppressed errors, rerun with: -s
+==370723== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+ 
+ 
+----------------------------------------
+Compiling mainSum.cpp with our test runner
+ 
+ 
+Running runner_sum
+Expecting 0 received 0
+Expecting 55 received 55
+Expecting 210 received 210
+Expecting 5050 received 5050
+PASSED
+ 
+ 
+----------------------------------------

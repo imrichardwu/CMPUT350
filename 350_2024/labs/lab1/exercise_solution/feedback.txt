@@ -1,0 +1,66 @@
+Lab 1
+Marker: 
+
+1)  9 marks
+ 
+compile with g++ -g -Wall -Wextra -Wconversion -Wsign-conversion -O -std=c++17 p1.cpp
+
+errors:                             0/-2
+warnings:                           0/-1
+
+    Functionality  5
+
+      rotate_left works             2/2
+      test code is meaningful       2/2
+      code checks for equality      1/1
+      after n rotations      
+
+    Coding style   2
+
+     Indentation                    1/1
+     Consistency                    1/1
+      spaces around operators,
+      variables, (), etc
+      { } placement ...
+
+    Comments                        2/2
+
+Remarks:
+-
+
+
+
+2)  12 marks
+
+compile with g++ -g -Wall -Wextra -Wconversion -Wsign-conversion -O -std=c++17 p2.cpp
+
+errors:                                0/-3
+warnings:                              0/-1
+
+    Functionality  8
+
+      detect all error conditions       2/2
+
+      release all memory for each       1/1
+      instance                
+
+      release all memory in             1/1
+      any exit scenario            
+
+      output correct                    4/4
+
+    Coding style   2
+
+     Indentation                        1/1
+     Consistency                        1/1
+      spaces around operators,
+      variables, (), etc
+      { } placement ...
+    
+    Comments                            2/2
+
+Remarks:
+-
+
+
+Total:                              X/21

@@ -1,0 +1,250 @@
+\documentclass[a4paper,11pt]{article}
+\include{../../../latex_headers/assignment_header}
+
+
+% ---------------------------------- Document ----------------------------------
+\begin{document}
+\pagenumbering{arabic}
+
+\begin{center}
+{\Large CMPUT 350 Assignment 1} \\
+{Due: Wednesday Sept. 25, 22:00}
+\end{center}
+
+\linerule
+
+\textbf{Important}:
+Read this text completely and start working on the assignment as
+soon as possible. Only then will you get an idea about how long it will take
+you to complete it. 
+
+\medskip
+
+If you worked on the assignment on your personal computer, copy your files to
+the undergraduate lab machine (e.g. uf13.cs.ualberta.ca) with
+scp and then test your code there as well before submitting it. 
+Like the labs, we will be using this environment to test your code.
+
+\medskip
+
+When done, submit your solution files on eClass:
+
+\begin{center}
+    \texttt{README.txt CPoint.c String.h String.cpp Set.h Set.cpp hexagons.cpp}
+\end{center}
+
+
+\bigskip 
+
+In this assignment you can't use {\CC} container types or functions from {\CC}
+libraries such as STL or Boost. However, you can use standard C libraries
+
+\medskip
+
+Your submissions will be marked considering their correctness (syntax and
+semantics), documentation, efficiency, and consistent coding style. Add assert
+statements to check important pre/post-conditions.
+
+\medskip
+
+Finally, make sure that you follow the course collaboration policy which is
+stated on the course webpage. File \texttt{README.txt} must be completed!
+
+\linerule
+
+1. [13 marks] 
+Given {\CC} code \texttt{Point.cpp}, your task is to relive the early {\CC}
+days in which only C compilers were available by transforming the {\CC} code
+into equivalent C code - line by line - inspired by the example in the lecture
+(Part 2, slide 4). Your {\CC} to C translator that runs in your brain is very
+basic - it can't remove useless code. The resulting code stored in \texttt{CPoint.c}
+has to compile using
+\begin{center}
+    \texttt{gcc -Wall -Wextra -O -std=c99 CPoint.c}
+\end{center}
+
+without errors nor warnings on the lab computers. To simplify marking, put
+comments that contain the original {\CC} lines in front of the C code
+implementing them.
+
+\medskip
+
+\textbf{Note}: we are not asking you to write a general {\CC} to C transformer. Your task
+is to convert the given file into C code manually.
+
+\bigskip
+
+\linerule
+
+\bigskip
+
+2. [12 marks] Implement a {\CC} string class in files \texttt{String.h} and \texttt{String.cpp}
+following the coding style and comment suggestions presented in the
+lecture.
+
+Strings are immutable objects, like in Java, i.e., once created, Strings
+cannot be changed. This allows us to save memory when copying Strings by
+storing character sequences in shared objects that are reference
+counted. I.e., whenever a String is created, a shared object is allocated that
+contains the character sequence with an initial reference count of 1. Later,
+whenever a String gets copied or assigned, the count is incremented and the
+new copy just points to the shared object. When Strings are deleted, the
+reference count is decremented. Once the count reaches 0, the shared object is
+no longer in use and can be destroyed. In the shared objects, strings are
+stored as C-strings, i.e., 0-terminated char arrays.
+
+\medskip 
+
+You may add \cppinline{private} \cppinline{const} data members and \cppinline{private} methods to the class
+definition, but no other members.
+
+\begin{center}
+    \texttt{g++ -Wall -Wextra -Wconversion -Wsign-conversion -O -std=c++17 ...}
+\end{center}
+without generating errors nor warnings on the lab computers.
+
+\medskip
+
+Make sure your implementation does not leak memory by testing it thoroughly
+creating, assigning, copying, and destroying thousands of Strings in
+\texttt{mainString.cpp} and running \texttt{valgrind}. You only submit \texttt{String.*} which don't
+contain test code!
+
+\bigskip
+
+\linerule
+
+\bigskip
+
+3. [16 marks] Implement a memory efficient set class in files \texttt{Set.h} and
+\texttt{Set.cpp} following the coding style and comment suggestions presented in the
+lecture.
+
+\medskip
+
+The sets considered here represent subsets of \texttt{\{ 0..n-1 \}} and are implemented
+in terms of bit sequences stored in int arrays, where bit \texttt{i} encodes whether
+element \texttt{i} is in the set (\texttt{bit=1}) or not (\texttt{bit=0}).
+
+\medskip 
+
+For instance, for \texttt{n = 4}, integer 11 (base 10) = \texttt{1011} (base 2) represents the
+set {0,1,3} because bit 0, 1, and 3 are set to 1 (read from right to left - lower
+order bits are listed first). 2 is not in the set because its corresponding
+bit (third lowest) is 0.
+
+\medskip 
+
+In general, bit \texttt{k} indicates whether number \texttt{k} is in the set: if the \texttt{k}-th bit is
+1, \texttt{k} is in the set. If the \texttt{k}-th bit is 0, \texttt{k} is not in the set.
+
+\medskip
+
+What are the advantages of storing sets like this? High speed and low memory
+requirements. As an example consider sets of numbers between 0 and 31. They
+can be represented as a single integer value. E.g.
+
+\begin{verbatim}
+    A={ 0, 1, 2, 8, 31 }      <=> 10000000'00000000'00000001'00000111 (base 2)
+    B={ 8, 17, 30, 31  }      <=> 11000000'00000010'00000001'00000000 
+    ---------------------
+    A intersect B = { 8, 31 } <=> 10000000'00000000'00000001'00000000
+\end{verbatim}
+
+which happens to be the result of a bitwise and operation (\texttt{\&} in {\CC}) on the
+bit sequences for A and B. Nifty - and quite fast - as such operations only
+take a nanosecond or so on modern CPUs!
+
+\medskip
+
+In this problem, bit sequences will be stored in int arrays with the goal of
+using as little memory as possible (1 bit per element).
+An \texttt{int} variable can hold a certain number of bits (use \cppinline{static const int
+INT_BITS = sizeof(int)*8} in your code). Your code needs to allocate a large
+enough int array to store \texttt{n} bits (how many integers do you need exactly?),
+with bit \texttt{i = 1} indicating that element i is contained in the set.
+
+\medskip 
+
+Set functions \texttt{clear()}, \texttt{complement()}, \texttt{add(const Set \&s)}, and \texttt{remove(const Set
+\&s)} need to be implemented as efficiently as possible, which means that you
+can't afford to iterate through all set elements individually. 
+
+\medskip 
+
+As illustrated above, implement above functions using bitwise integer
+operations \texttt{\&}, \texttt{|}, and $\mathtt{\sim}$ to test, set, and negate individual bits, as well
+as bit-shift operations \texttt{<<} and \texttt{>>}.
+
+\medskip 
+
+E.g. the following test checks whether bit i is set in integer y:
+\begin{verbatim}
+    if ((1 << i) & y) ... ,
+\end{verbatim}
+\begin{itemize}
+    \item (\texttt{b | c}) computes the union of two bit sets encoded as integers b and c,
+    \item (\texttt{b \& c}) computes the intersection, and 
+    \item $\mathtt{\sim}$ b computes the complement set of b
+\end{itemize}
+etc.
+
+\medskip 
+
+Sets are sole owners of their data, i.e., data aren't shared when copying or
+assigning sets and therefore have to be allocated and copied.
+You may add private const data members and private methods to the class
+definition, but no other members.
+
+Your code has to compile using
+\begin{center}
+    \texttt{g++ -Wall -Wextra -Wconversion -Wsign-conversion -O -std=c++17 ...}
+\end{center}
+without generating errors nor warnings on the lab machines.
+
+\medskip 
+
+Make sure your implementation does not leak memory by testing it
+thoroughly. We suggest using valgrind. Also add assertions that ensure that
+sets are compatible and elements are within range \texttt{0..n-1}. See \texttt{mainSet.cpp} for
+some examples.
+
+\medskip
+
+\textbf{Note:} You only submit \texttt{Set.h} and \texttt{Set.cpp} which doesn't contain test code.
+
+\medskip
+
+\textbf{Note on assert}: In C and C++, assertions work as follows:
+
+\begin{cppcode}
+#include <cassert>
+...
+assert(i >= 0);   // if i < 0 the program will stop here with an error message
+\end{cppcode}
+
+To make your program faster after convincing yourself that it is correct,
+checking assertions can be switched off by passing \texttt{-DNDEBUG} to the compiler.
+
+\bigskip
+
+\linerule
+
+\bigskip
+
+4. [16 marks] Design, implement and test a point localization algorithm for
+hexagonal tessellations. See details in \texttt{hexagons.cpp}.
+
+\textbf{Note:} There is an explanation question at the bottom of \texttt{hexagons.cpp},
+make sure you answer that question!
+
+\medskip 
+
+Your code has to compile using
+\begin{center}
+    \texttt{g++ -Wall -Wextra -Wconversion -Wsign-conversion -O -std=c++17 ...}
+\end{center}
+without generating errors nor warnings on the lab machines.
+
+
+\end{document}

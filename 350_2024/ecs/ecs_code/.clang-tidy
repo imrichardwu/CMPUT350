@@ -1,0 +1,18 @@
+Checks: "-*,
+  abseil-*,
+  clang-analyzer-*,
+  cppcoreguidelines-*,
+  misc-*,
+  modernize-*,
+  -modernize-use-trailing-return-type,
+  -cppcoreguidelines-non-private-member-variables-in-classes,
+  -misc-non-private-member-variables-in-classes,
+  -cppcoreguidelines-avoid-magic-numbers,
+  -cppcoreguidelines-avoid-do-while"
+
+WarningsAsErrors: ""
+HeaderFilterRegex: ""
+UseColor: true
+CheckOptions:
+  - key: modernize-use-nullptr.NullMacros
+    value: NULL

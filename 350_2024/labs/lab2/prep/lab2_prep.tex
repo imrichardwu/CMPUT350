@@ -1,0 +1,47 @@
+\documentclass[a4paper,11pt]{article}
+\include{../../../latex_headers/lab_header}
+
+
+% ---------------------------------- Document ----------------------------------
+\begin{document}
+\pagenumbering{arabic}
+
+\begin{center}
+{\Large CMPUT 350 Lab 2 Prep Problems}
+\end{center}
+
+
+\linerule
+
+1. Type the following code into file \texttt{e1.cpp}, 
+and implement \texttt{Bar}'s constructor, destructor, copy constructor, and assignment operator in \texttt{e1.cpp}.
+Also, define function \texttt{main()} that invokes \texttt{Bar}'s constructor, destructor, copy constructor, and assignment operator.
+
+\begin{cppcode*}{linenos=false}
+struct Foo {
+    // details immaterial
+};
+
+struct Bar {
+    Foo x;
+    Foo *p;     // always pointing to 10 solely owned Foos
+};
+\end{cppcode*}
+
+Test your program and make sure it doesn't leak memory (using valgrind).
+Your project must compile with 
+\[ \texttt{g++ -g -Wall -Wextra -Wconversion -Wsign-conversion -O -std=c++17 e1.cpp} \]
+
+\linerule
+
+2. For classes \texttt{Foo}, \texttt{Bar} used in problem 1, 
+create individual interface (\texttt{.h}) and implementation (\texttt{.cpp}) files 
+\texttt{Foo.h}, \texttt{Bar.h}, \texttt{Bar.cpp}. \\
+
+For this problem, interface files must not contain \textbf{ANY} method implementations.
+Also create file \texttt{main.cpp} that defines function \texttt{main()} which allocates 10 \texttt{Bar} objects on the heap and then frees them.
+Test your program and make sure it doesn't leak memory (using valgrind).
+Your project must compile with 
+\[ \texttt{g++ -g -Wall -Wextra -Wconversion -Wsign-conversion -O -std=c++17 Bar.cpp main.cpp} \]
+
+\end{document}

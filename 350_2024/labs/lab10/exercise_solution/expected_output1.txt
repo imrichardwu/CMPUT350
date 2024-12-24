@@ -1,0 +1,6 @@
+2 by 4 game
++1.000000 +2.000000 +3.000000 +4.000000
++5.000000 +6.000000 +7.000000 +8.000000
+col strategy: 0.1 0.2 0.3 0.4
+best response to col strategy: 0 1
+value for p1: 7

@@ -1,0 +1,146 @@
+\documentclass[a4paper,11pt]{article}
+\include{../../../latex_headers/lab_header}
+
+
+% ---------------------------------- Document ----------------------------------
+\begin{document}
+\pagenumbering{arabic}
+
+\begin{center}
+{\Large CMPUT 350 Lab 10 Prep Problems}
+\end{center}
+
+% Add important dates, change TA, add TA tools
+
+\linerule
+
+Contained are the following files:
+\begin{itemize}
+    \item \texttt{Solve.h}
+    \item \texttt{Solve.cpp}
+    \item \texttt{solve\_main.cpp}
+    \item \texttt{make}(a shell script for generating a.out)        
+    \item \texttt{solve} (working Linux executable - for reference, 
+        use \texttt{chmod +x solve} to make it executable)
+    \item \texttt{RPS.mge} (test input for -e option - Rock-Paper-Scissors!)
+    \item \texttt{RPS.mgr} (test input for -r option)
+    \item \texttt{test2x4.mge} (test input for -e option)
+    \item \texttt{test2x4.mgr} (test input for -r option)
+\end{itemize}
+
+In this lab you will implement a software tool for processing zero-sum matrix games.
+Data will be read from \texttt{stdin}, and results are printed to \texttt{stdout}. \\
+
+We provide a working executable (\texttt{solve}) and input samples that can
+be used to check whether your program generates correct output, like so:
+{\small 
+\begin{verbatim}
+    ./solve -e < RPS.mge
+    ./a.out -e < RPS.mge      # should generate same output
+    ./solve -r < test2x4.mgr
+    ./a.out -r < test2x4.mgr  # should generate same output
+\end{verbatim}
+}
+
+The input consists of an N1 by N2 payoff matrix which is encoded like so:
+{\small 
+\begin{verbatim}
+    3 3
+    0 -1 +1
+    +1 0 -1
+    -1 +1 0
+\end{verbatim}
+}
+(i.e., N1=\#rows and N2=\#cols followed by (N1*N2) payoff values for the row player) \\
+
+Depending on the command line option (-r or -e), one or two
+vectors of length N1 or N2 follow the matrix in the input (see below).
+
+\linerule
+
+1. In file \texttt{Solve.cpp} implement function
+\begin{cppcode*}{linenos=false}
+void expected_value(const Matrix &A, const Vector &strat1, const Vector &strat2);
+\end{cppcode*}
+which is invoked when using the -e option. 
+
+
+It takes a payoff matrix (in view of the row player), a row player strategy,
+and a column player strategy as input and computes the expected game result
+for the row player (see AI Part 5 p.20) and writes it to \texttt{stdout}.
+
+For example, for input file \texttt{RPS.mge} which contains the standard
+Rock-Paper-Scissors payoff matrix, a row strategy, and a column strategy:
+{\small 
+\begin{verbatim}
+    3 3
+    0 -1 +1
+    +1 0 -1
+    -1 +1 0
+    0.2  0.2 0.6
+    0.25 0.5 0.25
+\end{verbatim}
+}
+
+the output of \texttt{./solve -e < RPS.mge} is:
+{\small 
+\begin{verbatim}
+    3 by 3 game
+    +0.000000 -1.000000 +1.000000 
+    +1.000000 +0.000000 -1.000000 
+    -1.000000 +1.000000 +0.000000 
+    row strategy: 0.2 0.2 0.6
+    col strategy: 0.25 0.5 0.25
+    expected value for p1: 0.1
+\end{verbatim}
+}
+
+Test your program by comparing its output to that of \texttt{./solve -e < ...} for
+various input files (including \texttt{RPS.mge}, \texttt{test2x4\_mge}, and some that you create).
+
+\linerule
+
+2. In file \texttt{Solve.cpp} implement function
+\begin{cppcode*}{linenos=false}
+void best_response_to_row(const Matrix &A, const Vector &strat1);
+\end{cppcode*}
+which is invoked when using the -r option.
+
+It takes a payoff matrix (in view of the row player) and a row player
+strategy as input and computes a best-response strategy for the column
+player and the resulting game value for the row player and writes them \texttt{stdout} (see AI
+Part 5 p.23).
+
+For example, for input file \texttt{RPS.mgr} which contains the standard
+Rock-Paper-Scissors payoff matrix and a row strategy:
+{\small 
+\begin{verbatim}
+    3 3
+    0 -1 +1
+    +1 0 -1
+    -1 +1 0
+    
+    0.2 0.2 0.6
+\end{verbatim}
+}
+
+the output of \texttt{./solve -r < RPS.mgr} is:
+{\small 
+\begin{verbatim}
+    3 by 3 game
+    +0.000000 -1.000000 +1.000000 
+    +1.000000 +0.000000 -1.000000 
+    -1.000000 +1.000000 +0.000000 
+    row strategy: 0.2 0.2 0.6
+    best response to row strategy: 1 0 0
+    value for p1: -0.4
+\end{verbatim}
+}
+
+I.e., a best response to the row strategy that chooses Rock 20\%, Paper 20\%,
+and Scissors 60\% of the time is the 100\% Rock column player strategy.
+
+Test your program by comparing its output to that of \texttt{./solve -r < ...} for
+various input files (including \texttt{RPS.mgr}, \texttt{test2x4.mgr}, and some that you create).
+
+\end{document}

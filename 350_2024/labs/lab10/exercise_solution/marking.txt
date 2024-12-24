@@ -1,0 +1,24 @@
+Lab exercise 11 marks (18 total)
+
+compile with g++ -g -Wall -Wextra -O -std=c++17
+
+errors:                         /-4
+no errors, but warnings:        /-2
+
+best practices issues like      /-3
+insufficient comments,
+inconsisten indentation,
+and unhelpful identifiers
+
+Part 1
+
+  Best response correct         /6
+  Row player value correct      /2
+
+Part 2
+
+  min_A correct                 /2
+  written LPs correct           /8
+
+                     Total:     /18
+Remarks:

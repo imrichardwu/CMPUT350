@@ -1,0 +1,42 @@
+Describe your experimental setup and your results.
+
+I ran a set of tournaments among the 3 policies (0:ATTACK_WEAKEST,
+1:ATTACK_CLOSEST, 2:ATTACK_MOST_DANGEROUS) to test how strong they are using
+bash scripts.
+
+Each tounament consisted of N=1000 games being played between different
+policies for a specific number of marines and tanks (20 50 100 300) on a
+700x700 playing field.
+
+Because the setup was symmetric it suffices to run three tournaments each:
+policy 0 vs 1, 0 vs 2, and 1 vs 2.
+
+To speed up simulation I added a flag for switching graphics off. On occasion
+games didn't finish due to units staying out of attack range. To solve this
+problem I stopped simulations after 1000000 steps, counting them as draws.
+
+The following table summarizes my results:
+
+C    0       1        2
+------------------------
+20  20.41   29.5875  100
+50  49.85    0.15    100
+100 50.00    0       100
+300 50.00    0       100
+
+Given are the score percentages for policies 0,1,2 for various unit
+counts, awarding 1 point to the winner, 0 points to the loser, and 0.5
+points to both in case of a draw.
+
+E.g., in 20 Tank/Marine games, ATTACK_MOST_DANGEROUS won 100% of the
+points of its games against the other policies, whereas ATTACK_WEAKEST
+scored only 20.41% and ATTACK_CLOSEST 29.5875% of the available
+points.
+
+Given these results, ATTACK_MOST_DANGEROUS is clearly the strongest policy,
+and only for low unit counts is ATTACK_CLOSEST better than ATTACK_WEAKEST.
+The results are likely statistically significant given the large number of
+experiments (N=1000). In future work one could try establish statistical
+significance by selecting an appropriate statistical test for the hypothesis
+"policy A is stronger than policy B".
+

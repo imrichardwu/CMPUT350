@@ -1,0 +1,91 @@
+\documentclass[a4paper,11pt]{article}
+\include{../../../latex_headers/lab_header}
+
+
+% ---------------------------------- Document ----------------------------------
+\begin{document}
+\pagenumbering{arabic}
+
+\begin{center}
+{\Large CMPUT 350 Lab 6 Exercise Problems}
+\end{center}
+
+\labrules{g++ -Wall -Wextra -Wconversion -Wsign-conversion -O -g -std=c++17 ...}{Stack.h mainStack.cpp mainSum.cpp}{6}
+
+
+1. [43 marks] 
+\begin{enumerate}[label=\alph*)]
+\item In file \texttt{Stack.h} write a template class \texttt{Stack<T>} that stores elements
+of type \texttt{T} and supports the following public class methods:
+
+{\small
+\begin{verbatim}
+    empty  // returns true iff stack contains no element
+    top    // returns reference to top element (pre-cond: !empty)
+    push   // push an element on top of the stack
+    pop    // remove the top element from stack (pre-cond: !empty)
+    clear  // remove all elements
+\end{verbatim}
+}
+
+In your implementation use private inheritance from \texttt{std::vector<T>}. All
+Stack member functions except \texttt{clear()} must run in amortized constant time
+
+\item In \texttt{Stack.h} implement
+\begin{cppcode*}{fontsize=\footnotesize,linenos=false}
+template <typename T>
+std::ostream &operator<<(std::ostream &os, const Stack<T> &s);
+\end{cppcode*}
+
+that prints a stack to an output stream (in one line, starting with the top
+element, using a single space (' ') as separator). You may assume that stack elements can be
+printed using \texttt{cout << ...}
+
+\medskip
+
+Note that above \texttt{operator<<} can only use \texttt{Stack}'s public interface
+(empty/top/push/pop/clear)
+
+\item In \texttt{Stack.h} also write global template function "\texttt{reverse\_stack}" that
+    reverses the order of elements in a given Stack.
+    Think about how to do this using only the public interface.
+
+\item In file mainStack.cpp write test code that checks all functions
+    you wrote. The weight of correct implementation and testing is equal in
+    this exercise.
+\end{enumerate}
+
+\bigskip
+
+\textbf{IMPORTANT}! Even if you haven't implemented some functions, you can still write
+test code for them!
+
+\bigskip
+
+Also check pre-conditions with assert, use const as often as possible, and
+ensure that you can push expression results (e.g., \texttt{Stack<int> s; s.push(3+5);} )
+
+\bigskip
+
+Finally, make sure that your code doesn't leak memory!
+
+\linerule 
+
+
+\bigskip
+
+2. [10 marks] 
+In file \texttt{mainSum.cpp} write and test template class \texttt{Sum} that for $n \ge 0$
+computes \texttt{1+2+..+(n-1)+n} at \textbf{COMPILE TIME}
+\begin{cppcode*}{fontsize=\footnotesize,linenos=false}
+int main() {
+    cout << Sum<0>::value  << endl;         // 0
+    cout << Sum<10>::value << endl;         // 55
+    cout << Sum<20>::value << endl;         // 210
+    cout << Sum<100>::value << endl;        // 5050
+    // etc.
+    return 0;
+}
+\end{cppcode*}
+
+\end{document}

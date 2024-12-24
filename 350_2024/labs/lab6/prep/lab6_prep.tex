@@ -1,0 +1,85 @@
+\documentclass[a4paper,11pt]{article}
+\include{../../../latex_headers/lab_header}
+
+
+% ---------------------------------- Document ----------------------------------
+\begin{document}
+\pagenumbering{arabic}
+
+\begin{center}
+{\Large CMPUT 350 Lab 6 Prep Problems}
+\end{center}
+
+% Add important dates, change TA, add TA tools
+
+\linerule
+
+1. In file \texttt{pp1.cpp} implement class template \texttt{Queue} that supports the 
+following standard first-in-first-out queue functions:
+{\small 
+\begin{verbatim}
+    empty() const   : returns true iff queue is empty
+    front()         : returns reference to front element (precond.: !empty())
+    front() const   : returns const reference to front element (precond.: !empty())
+    pop()           : removes front element (pre-cond.: !empty())
+    push(x)         : add element x of type T at the end
+\end{verbatim}
+}
+
+Use private inheritance from \texttt{std::list<T>} and delegate function calls to base
+class function calls, like so:
+
+
+\bigskip 
+Examples:
+\begin{cppcode*}{linenos=false}
+template ...
+class ...
+    : private std::list<T>
+{
+    using Base = std::list<T>;
+    ...
+    bool empty() const {
+        return Base::empty();
+    }
+    ...
+}
+\end{cppcode*}
+
+Also make sure that your CC, AO, and destructor work (either by convincing
+yourself that the default implementation works or by writing test code), and
+check preconditions with assert. Also, test your code.
+
+\linerule 
+
+2. You have decided that for your nuclear power plant control software using
+floating point variables is a bad idea because of potentially devestating
+rounding errors. Your idea is to prevent users from instantiating your
+class templates with floating point types with the help of type trait
+class \texttt{is\_fp} and \texttt{static\_assert(cond, msg)} which checks a
+Boolean condition at \textbf{COMPILE TIME} and prints an error msg if it is false.
+
+\medskip 
+Example:
+\begin{cppcode*}{linenos=false}
+template <typename T> 
+class Foo {
+    // don't allow T to be floating point type
+    static_assert(...);
+    ...
+};
+cout << is_fp<double>::value << endl;   // 1
+cout << is_fp<float>::value << endl;    // 1
+cout << is_fp<int>::value << endl;      // 0
+Foo<int> f;         // ok
+Foo<double> g;      // fails
+\end{cppcode*}
+
+In file \texttt{pp2.cpp} implement class template \texttt{is\_fp<T>} whose
+variable value is 1 if \texttt{T} is a floating point type, and 0
+otherwise. Test it using the code above.
+
+
+
+
+\end{document}

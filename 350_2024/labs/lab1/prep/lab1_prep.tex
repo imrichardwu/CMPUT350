@@ -1,0 +1,84 @@
+\documentclass[a4paper,11pt]{article}
+\include{../../../latex_headers/lab_header}
+
+
+% ---------------------------------- Document ----------------------------------
+\begin{document}
+\pagenumbering{arabic}
+
+\begin{center}
+{\Large CMPUT 350 Lab 1 Prep Problems}
+\end{center}
+
+\linerule
+
+\textbf{Note}: We expect you to test your programs. 
+One simple way of doing this in case your program reads input from stdin is to prepare text files --- 
+say \texttt{inp1.txt}, \texttt{inp2.txt}, \dots --- containing test case inputs and then use
+\begin{align*}
+    &\texttt{./a.out < inp1.txt} \\
+    &\texttt{./a.out < inp2.txt} \\
+    &\dots
+\end{align*}
+
+\linerule
+
+1. Write a C program \texttt{e1c.c} that reads integers from \texttt{stdin} until the end of input is reached, 
+and prints the sum of all encountered numbers to stdout - using \texttt{scanf}/\texttt{printf}. 
+In case of invalid inputs, your program needs to write ``illegal input'' to \texttt{stderr} (using \texttt{fprintf(stderr, ...)}) and exit. 
+Test your program with several inputs. \\
+
+\textbf{Hint}: when using \texttt{scanf}, 
+a return value different from the number of expected items indicates that an invalid input or the end of the input was encountered (see \texttt{man 3 scanf}). 
+To distinguish the latter cases use \texttt{feof(stdin)} (see \texttt{man 3 feof}).
+
+\linerule
+
+2. Similar to problem 1, write {\CC} program \texttt{e2.cpp} that reads integers from \texttt{stdin} until the end of input is reached, 
+and prints the sum of all encountered numbers to stdout --- using \texttt{std::cin/std::cout}. 
+In case of invalid inputs, your program needs to write ``illegal input'' to \texttt{stderr} and exit. 
+Test your program with several inputs.\\
+
+\textbf{Hint}: After reading using \texttt{std::cin}, you can check whether the input succeeded like so:
+\begin{cppcode*}{linenos=false}
+cin >> ...;
+if (!std::cin) {
+    // something isn't right
+    if (std::cin.eof()) {
+        // end of file/input reached
+    } else {
+        // bad input
+    }
+} else {
+    // reading succeeded
+}
+\end{cppcode*}
+
+This works because there is an implicit conversion from \texttt{istream} to \texttt{bool}. 
+Thus, this also works:
+\begin{cppcode*}{linenos=false}
+int i;
+while (std::cin >> i) {
+    // reading succeeded
+    // ...
+}
+// something isn't right ...
+\end{cppcode*}
+
+\linerule
+
+3. Write {\CC} program \texttt{e3.cpp}, using \texttt{std::cin/std::cout/new/delete}, 
+that reads integers (in decimal notation with white-space (space,newline,tab) as delimiter) 
+from \texttt{stdin} and prints them in reverse order with one space in between them when the end of input is reached. 
+You may assume that the input contains at most 10,000,000 integers. 
+If not, your program needs to write ``input too big'' to \texttt{stderr} and exit. 
+If an illegal input is encountered, ``illegal input'' needs to be printed to \texttt{stderr} and your program must exit at that point. 
+Test your program with different inputs and ensure that it doesn't leak memory using valgrind.\\
+
+\textbf{Hints}:
+\begin{itemize}
+    \item Runtime stacks are usually quite small (a few megabytes). This means that large arrays can't be allocated on the stack.
+    \item Input stream \texttt{operator >>} skips over white-space characters.
+\end{itemize}
+
+\end{document}

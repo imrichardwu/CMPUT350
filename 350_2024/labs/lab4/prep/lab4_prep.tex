@@ -1,0 +1,61 @@
+\documentclass[a4paper,11pt]{article}
+\include{../../../latex_headers/lab_header}
+
+
+% ---------------------------------- Document ----------------------------------
+\begin{document}
+\pagenumbering{arabic}
+
+\begin{center}
+{\Large CMPUT 350 Lab 4 Prep Problems}
+\end{center}
+
+% Add important dates, change TA, add TA tools
+
+\linerule
+
+1. For class 
+\begin{cppcode*}{linenos=false}
+struct Point {
+    int x{};
+    int y{};
+};
+\end{cppcode*}
+in \texttt{p1.cpp}, implement global operators \texttt{<<} and \texttt{>>}
+that allows you to read and write points from \texttt{stdin}/\texttt{stdout} like so:
+\begin{cppcode*}{linenos=false}
+Point p;
+std::cin >> p;
+std::cout << p << std::endl;
+\end{cppcode*}
+\textbf{Note}: For this to work, you need to include \texttt{iostream}.
+
+\linerule 
+
+2. In file \texttt{p2.cpp}, 
+implement the following class operators for class \texttt{Point} above:
+\begin{center}
+    \texttt{== ~~~~~~  > ~~~~~~  >=}
+\end{center}
+which work componentwise. 
+I.e., two points are equal if their \texttt{x} components match and their \texttt{y} components match.
+For \texttt{>} and \texttt{>=}, 
+use the lexicographic ordering with \texttt{x} being the higher-valued component.
+
+\linerule 
+
+3. In file \texttt{p3.cpp},
+implement \texttt{pre++}, \texttt{post++}, \texttt{pre--}, \texttt{post--},
+for class \texttt{Point} above.
+Their effect is to increment or decrement a point's \texttt{x} component, respectively.
+Also, test your implementation.
+
+\linerule 
+
+4. Suppose you want to count how many \texttt{Point} instances have been constructed 
+at any given time when your program runs. 
+Write code in \texttt{p4.cpp} that gives you access to this information. 
+Can your solution be compromised by a teammate working on a different project file?
+If so, try to improve your design.
+
+\end{document}

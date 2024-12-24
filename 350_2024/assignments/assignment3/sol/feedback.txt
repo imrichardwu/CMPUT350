@@ -1,0 +1,50 @@
+Assignment 3 
+
+Marker: 
+
+Part 1: [24 marks]
+
+compile with g++ -g -Wall -Wextra -std=c++17 -O ...
+
+deductions:
+
+  there is a compile error:                         0/-5
+  no compile error, but there is a warning:         0/-3
+
+Grid()                                              2/2
+getWidth,getHeight                                  1/1
+getTile,setTile                                     1/1
+
+isConnected                                         8/8
+  - using BFS/flood-fill
+  - caching connected components
+
+findShortestPath                                    8/8
+  - using set/map for closed list: -1
+
+best practices:                                     4/4
+  consistent indentation, variable names,
+  comments
+
+
+Remarks:
+
+
+Part 2: [16 marks]
+
+A) algorithm applied consistently                   4/4
+   & node naming consistent   
+
+B) PRA* Abstraction
+
+i)                                                  2/2
+ii)                                                 2/2
+iii)                                                2/2
+iv)                                                 6/6
+
+Remarks:
+
+
+
+
+Total:                      40/40

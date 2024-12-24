@@ -1,0 +1,116 @@
+\documentclass[a4paper,11pt]{article}
+\include{../../../latex_headers/lab_header}
+
+
+% ---------------------------------- Document ----------------------------------
+\begin{document}
+\pagenumbering{arabic}
+
+\begin{center}
+{\Large CMPUT 350 Lab 3 Exercise Problems}
+\end{center}
+
+\labrules{g++ -Wall -Wextra -Wconversion -Wsign-conversion -O -g -std=c++17 ...}{AnimalSim.cpp}{3}
+
+[31 marks] In file \texttt{AnimalSim.cpp} create a class hierarchy for simulating animal behaviour in the wild. 
+Each animal has an x,y location, an alive flag, an age, a print
+function, and an act function which may change the animal's location, create
+at most one new animal ("offspring"), or kill another animal. 
+
+\medskip
+
+The act function in the Animal base-class has the following signature:
+   \[ \cppinline{virtual void act(World &w) = 0;} \]
+where \texttt{w} is a \texttt{World} that holds an array of \texttt{Animal} pointers which describes the
+current state of the simulation (see below).
+
+\medskip
+
+The print function prints animal data and has this signature:
+\[ \cppinline{virtual void print() const = 0;} \]
+
+
+\bigskip
+
+1. Based on your Animal base-class, define
+\begin{itemize}
+    \item Mouse which always walks West  (decrements x)
+    \item Goose which always flies North (increment y)
+    \item Rabbit which creates one Rabbit each time it acts (at the same location)
+    \item Bear which kills a random animal each time it acts. Bears can't kill
+      themselves and can only choose targets among animals that existed at the
+      beginning of the iteration (i.e. they can kill other bears, but not themselves)
+\end{itemize}
+
+
+2. Implement missing code parts (marked with "implement ...")
+
+\bigskip 
+
+3. To test your implementation use \cppinline{World::print()} which prints the current 
+list of animals to \cppinline{stdout}.
+In \cppinline{World::print()} a loop must call virtual Animal function \cppinline{print()} on each
+animal in turn.
+
+\medskip
+
+The output format of \cppinline{World::print()} is as follows:
+\begin{verbatim}
+    <space> <Animal-Number> animal(s)
+    <space> <Animal-Type> <Location(x-y)> <Age>
+    <space> <Animal-Type> <Location(x-y)> <Age>
+    ...      
+\end{verbatim}
+
+E.g. output of \texttt{simulate(1)} for a world containing 6 animals:
+\begin{verbatim}
+    iter 0
+      6 animal(s)
+      Mouse 100 100 0
+      Mouse 50 60 0
+      Goose 90 80 0
+      Goose 10 20 0
+      Rabbit 80 80 0
+      Bear 70 90 0
+
+    iter 1
+      6 animal(s)
+      Mouse 101 100 1
+      Mouse 51 60 1
+      Goose 90 79 1
+      Rabbit 80 80 0
+      Rabbit 80 80 1
+      Bear 70 90 1
+\end{verbatim}
+
+Note that in this simulation the bear killed the second goose in the first
+step. The order of animals is implementation-specific. What matters is that
+all animals are accounted for.
+
+Test your simulation on the starting configuration shown above with 20 steps.
+
+\bigskip 
+
+\textbf{Tips}:
+\begin{itemize}
+    \item Familiarize yourself with the public interface of class World
+    \item Newly created animals don't act during the simulation step they were created in
+    \item To create new offspring, \texttt{w.add\_animal(...)} needs to be called
+    \item Use const as often as you can
+    \item For functions that don't use their parameters use this construct
+        \[ \cppinline{void act(World &) { ... }} \]
+        (no parameter name) to avoid compilation warnings, 
+        or alternatively,
+        \[ \cppinline{void act([[maybe_unused]] World &w) { ... }} \]
+        This is known as an \textit{attribute}, which is supported in {\CC}17 
+        to indicate to the compiler that this variable may not be used,
+        and thus to not warn about it.
+    \item Use the given starting codebase \texttt{AnimalSim.cpp}, and implement and test the missing pieces,
+        designated with \texttt{implement ...}
+\end{itemize}
+
+
+% \cppfile{Matrix.h}
+
+
+\end{document}

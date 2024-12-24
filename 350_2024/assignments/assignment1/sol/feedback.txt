@@ -1,0 +1,96 @@
+Marking Sheet
+CMPUT 350 Assignment 1
+
+Marker: 
+
+============================================================================
+
+1) CPoint [13]
+
+struct Point def.                                           1/1
+Point_constr def.                                           1/1
+Point_destr def.                                            1/1
+Point_add def.                                              1/1
+Point_print def.                                            1/1
+ 
+array allocation + constr. loop                             1/1 
+sum + constr. call                                          1/1
+Point_add in loop                                           1/1
+Point_print                                                 1/1
+destr. loop (reverse order) + destr. sum                    1/1
+free(A)                                                     1/1
+
+Original C++ code in comments                               2/2
+
+compilation warnings but no errors:                         0/-2
+compilation errors:                                         0/-4
+
+Remarks:
+-
+
+
+============================================================================
+
+2) String [12]
+
+Constructor                                                 2/2
+Destructor (no memory leaks)                                2/2
+CC                                                          2/2
+AO                                                          2/2
+size                                                        1/1
+ref_count                                                   1/1
+
+Style (comments, indentation, etc.)                         2/2
+
+compilation warnings but no errors:                         0/-2
+compilation errors:                                         0/-4
+
+Remarks:
+-
+
+
+============================================================================
+
+3) Set [16]
+
+compilation warnings but no errors:                         0/-8
+
+Constructor/Assignment operator                             1/1
+Destructor (no memory leaks)                                1/1
+CC                                                          2/2
+AO                                                          2/2
+clear                                                       1/1
+complement                                                  1/1
+has                                                         1/1
+add                                                         1/1
+remove                                                      1/1
+print                                                       1/1
+Precondition checking                                       2/2
+
+Style (comments, indentation, etc.)                         2/2
+
+compilation warnings but no errors:                         0/-2
+compilation errors:                                         0/-4
+
+Remarks:
+-
+
+
+============================================================================
+
+4) Hexagons! [16]
+
+locate() (based on hint, correctness, speed)                     8/8
+additional test code                                             4/4
+explanations ((i,j) geometric derivation, 4 choices, testing)    4/4
+
+compilation warnings but no errors:                              0/-2
+compilation errors:                                              0/-4
+
+Remarks:
+-
+
+
+============================================================================
+
+Total:           57/57

@@ -5,7 +5,8 @@
 
 \section*{PRA* Map Abstraction Solution}
 
-(a) Apply the clique-based abstraction used in PRA* (ai-part2, page 12) to the graph below. For this, scan the nodes from top-left to bottom-right - row by row, identifying new maximum size complete subgraphs of size up to 4 that can be abstracted into new nodes in the next abstraction level - starting from the current node and scanning its unvisited neighborhood. Continue this process until only one node remains, showing the resulting abstraction levels and indicating which nodes got abstracted by what node in the process. Use uppercase letters A, B, C, ... to name new abstract nodes and explain all steps.
+\subsection*{(a) Clique-based Abstraction}
+Apply the clique-based abstraction used in PRA* (ai-part2, page 12) to the graph below. For this, scan the nodes from top-left to bottom-right - row by row, identifying new maximum-size complete subgraphs of size up to 4 that can be abstracted into new nodes in the next abstraction level - starting from the current node and scanning its unvisited neighborhood. Continue this process until only one node remains, showing the resulting abstraction levels and indicating which nodes got abstracted by what node in the process. Use uppercase letters A, B, C, ... to name new abstract nodes and explain all steps.
 
 \begin{verbatim}
     a-b-c-d-e-f-g
@@ -17,25 +18,33 @@
 
 \textbf{Solution:}
 
-\begin{verbatim}
-    Level 1:
-    A = {a, b, h, i}
-    B = {c, d, j, k}
-    C = {e, f, l, m}
-    D = {g, n}
-    E = {o, p, q, r}
-    F = {s, t, u}
+\paragraph{Level 1:}
+\begin{itemize}
+    \item $A = \{a, b, h, i\}$
+    \item $B = \{c, d, j, k\}$
+    \item $C = \{e, f, l, m\}$
+    \item $D = \{g, n\}$
+    \item $E = \{o, p, q, r\}$
+    \item $F = \{s, t, u\}$
+\end{itemize}
+The goal of Level 1 abstraction is to simplify the graph by grouping nodes into maximum-sized complete subgraphs, with each subgraph containing up to 4 nodes. This strategy ensures that we reduce the complexity of the graph systematically while preserving as much of the original structure and connectivity as possible. By scanning row by row, we maintain an organized approach that allows us to identify complete subgraphs efficiently without missing any nodes.
 
-    Level 2:
-    G = {A, B}
-    H = {C, D}
-    I = {E, F}
+\paragraph{Level 2:}
+\begin{itemize}
+    \item $G = \{A, B\}$
+    \item $H = \{C, D\}$
+    \item $I = \{E, F\}$
+\end{itemize}
+At Level 2, we abstract the nodes from Level 1 into new abstract nodes. The goal is to further reduce the number of nodes while maintaining important connections between the clusters. We group nodes that can still form complete subgraphs, which helps to preserve the graph's connectivity properties in a hierarchical manner. This approach allows for effective abstraction while ensuring that the structure remains manageable for analysis.
 
-    Level 3:
-    J = {G, H, I}
-\end{verbatim}
+\paragraph{Level 3:}
+\begin{itemize}
+    \item $J = \{G, H, I\}$
+\end{itemize}
+In Level 3, we abstract the nodes from Level 2 into a single abstract node. This final abstraction level simplifies the graph to a single node, representing the entire original graph. The hierarchical abstraction process ensures that the connectivity and structure of the original graph are preserved in a more manageable and abstract form, creating efficient path planning.
 
-(b) Assuming the original graph size is $N = 4^n$ and clique-based abstraction being able to always group 4 nodes to form a new abstract node in each step:
+\subsection*{(b) Analysis}
+Assuming the original graph size is $N = 4^n$ and clique-based abstraction can always group 4 nodes to form a new abstract node in each step:
 
 \begin{enumerate}
     \item[(i)] The number of nodes in the $k$-th abstraction level is given by:
@@ -60,15 +69,13 @@
     \]
     Thus, abstraction level $u$ consists of $\sqrt{N}$ nodes.
 
-    \item[(iv)] To prove that the clique abstraction used in PRA* preserves connectivity, we need to show both directions:
+    \item[(iv)] To prove that the clique abstraction used in PRA* preserves connectivity, we need to show both directions.
+
+    First, consider if there is a path from node $A$ to node $B$ in the original map. Since nodes $A$ and $B$ belong to cliques that are abstracted into abstract nodes $A'$ and $B'$ respectively, and since $A$ and $B$ are connected, there must also be a connection between $A'$ and $B'$ in the abstract map.
+
+    Conversely, if there is a path between abstract nodes $A'$ and $B'$ in the abstract map, this implies that nodes belonging to $A'$ and nodes belonging to $B'$ were connected in the original graph. Therefore, there must be a corresponding path between at least one node in $A'$ and one node in $B'$ in the original map.
     
-    \begin{itemize}
-        \item[$(\Rightarrow)$] If there is a path from node $A$ to node $B$ in the original map, then there must be a path from abstract node $A'$ to abstract node $B'$ in the abstract map. This is because $A$ and $B$ are part of cliques that are abstracted into $A'$ and $B'$, respectively, and the edges between nodes $A$ and $B$ imply connectivity between the abstract nodes $A'$ and $B'$.
-        
-        \item[$(\Leftarrow)$] If there is a path from abstract node $A'$ to abstract node $B'$ in the abstract map, then there must be a corresponding path from one of the nodes in $A'$ to one of the nodes in $B'$ in the original map. This is because $A'$ and $B'$ represent groups of nodes that were connected in the original graph, and the existence of an edge between $A'$ and $B'$ implies that there were corresponding connections between nodes in the original graph.
-    \end{itemize}
-    
-    Therefore, the clique abstraction preserves connectivity by ensuring that any path in the original graph is represented in the abstract graph and vice versa.
+    Thus, the clique-based abstraction used in PRA* preserves connectivity in both directions, ensuring that paths in the abstract map correspond to paths in the original map.
 \end{enumerate}
 
 \end{document}

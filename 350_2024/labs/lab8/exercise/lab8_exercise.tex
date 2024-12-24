@@ -1,0 +1,77 @@
+\documentclass[a4paper,11pt]{article}
+\include{../../../latex_headers/lab_header}
+
+
+% ---------------------------------- Document ----------------------------------
+\begin{document}
+\pagenumbering{arabic}
+
+\begin{center}
+{\Large CMPUT 350 Lab 8 Exercise Problems}
+\end{center}
+
+\labrules{g++ -Wall -Wextra -O -g -std=c++17 ...}{Triang2.cpp}{8}
+
+
+1. [29 marks]
+
+In this exercise you will complete a program that generates a Delaunay
+triangulation by first incrementally generating a triangulation for n points
+in a bounding rectangle and then flipping edges to increase the minimum
+interior angle locally.
+
+\bigskip
+
+To get started, download all files into a new folder - individually by
+right-click-save or by extracing all files from \texttt{lab8\_ex.zip}
+
+\bigskip
+
+We provide a driver (\texttt{disp.cpp}) that animates the process using OpenGL and a
+working executable (\texttt{disp.lab}) as reference. Please note that after downloading
+this file you have to set its executable flag like so: \texttt{chmod +x disp.lab}
+
+\bigskip
+
+Our driver accepts command line parameters that may be useful for testing. Run
+\texttt{./disp.lab -h} to see a list. To reproduce program runs set seed to != 0 (see test
+scripts \texttt{test\_diag}, \texttt{test\_fast}, \texttt{test\_slow}).
+
+\bigskip
+
+
+Your task is to complete functions in \texttt{Triang2.cpp} in which we also provide
+hints. Don't change any other file because you'll only submit \texttt{Triang2.cpp}.
+
+\bigskip
+
+
+Start by reading \texttt{Triang.h} and \texttt{Triang.cpp}, which contain most of the
+implementations already. We encourage you to use our implemented functions in
+your solutions.
+
+\bigskip
+
+
+To compile your program use \texttt{make}
+
+You may change \texttt{disp.cpp} for testing your functions
+
+You can run \texttt{./disp} from a remote machine provided 
+
+\begin{enumerate}
+    \item you use x2go, or
+    \item you are using a UNIX environment on your computer (e.g., MacOS, or hosting
+        Ubuntu on Windows + installing an X-Window server)
+    \item you have an X-Window server running on your own computer and use ssh -X
+    ... to connect to a lab machine (-X forwards X-Window connections, try to
+    run "xeyes" on the lab machine to see if it works)
+\end{enumerate}
+
+\bigskip
+
+\textbf{IMPORTANT}: Please note that any crashes you might experience while testing
+your functions are most likely caused by your code, which is assumed to be
+correct by the Delaunay triangulation code that calls them. In such cases, we
+suggest to test your functions independently.
+\end{document}

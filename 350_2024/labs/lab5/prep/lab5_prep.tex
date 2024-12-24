@@ -1,0 +1,73 @@
+\documentclass[a4paper,11pt]{article}
+\include{../../../latex_headers/lab_header}
+
+
+% ---------------------------------- Document ----------------------------------
+\begin{document}
+\pagenumbering{arabic}
+
+\begin{center}
+{\Large CMPUT 350 Lab 5 Prep Problems}
+\end{center}
+
+% Add important dates, change TA, add TA tools
+
+\linerule
+
+1. In file \texttt{pp1.cpp} write function template \texttt{swap\_if\_bigger}
+that swaps two elements of arbitrary but equal type if the first is bigger
+than the second (use operator $<$ to decide)
+
+\bigskip 
+Examples:
+\begin{cppcode*}{linenos=false}
+int a=2, b=1;
+swap_if_bigger(a, b);  // now: a=1, b=2
+
+double c=0.5, d=1.3;
+swap_if_bigger(c, d);  // no change
+\end{cppcode*}
+
+Also write test code in \texttt{main()}.
+
+
+
+\linerule 
+
+2. In file \texttt{pp2.cpp} write class template \texttt{Array} that
+stores a C-array of type \texttt{T} and size \texttt{N} in place, i.e., not allocating it on the heap.
+
+\bigskip 
+
+Also implement the constructor that initializes all values with \texttt{T()}, the
+size function that returns the number of elements, and the bracket operator
+giving access to elements similar to how C-arrays work.
+
+\bigskip 
+Examples:
+\begin{cppcode*}{linenos=false}
+Array<int, 3> A1;               // int array of size 3 containing 0s
+Array<double, 5> A2;            // double array of size 5 containing 0s
+cout << A1.size() << endl;      // 3
+cout << A2.size() << endl;      // 5
+A1[0] = 2;
+cout << A1[0] << endl;          // 2  
+\end{cppcode*}
+
+
+
+\linerule 
+
+3. 
+Transform the singly connected list implementation that works for \texttt{int} data
+(given in \texttt{SList.h}, \texttt{SList.cpp}, \texttt{SListMain.cpp})
+into a class template for arbitrary data payload. 
+
+\bigskip 
+
+The class template must be implemented in file \texttt{SListTemplate.h} and
+tested using \texttt{SListTemplateMain.cpp}
+
+
+
+\end{document}

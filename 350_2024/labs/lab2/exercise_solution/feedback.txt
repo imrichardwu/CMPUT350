@@ -1,0 +1,48 @@
+Lab 2
+Marker: 
+
+
+25 marks
+ 
+compile with g++ -Wall -Wextra -Wconversion -Wsign-conversion -O -g -std=c++17 Matrix.cpp matrixTest.cpp
+
+errors:                             0/-6
+warnings:                           0/-2
+
+   Functionality  13
+
+     constructor                    2/2
+     destructor                     1/1
+     CC                             2/2
+     AO                             2/2
+     set                            1/1
+     get                            1/1
+     print                          2/2
+     equals                         2/2
+ 
+   Testing 6
+
+     all methods invoked            3/3
+     equality test for CC,AO        2/2
+     print test using               1/1
+     non-trivial elements
+
+   Coding Style 6
+
+    Prevent double inclusion        1/1
+      in .h file
+    No method implementation        1/1
+      in .h file 
+    Indentation                     1/1
+    Consistency                     1/1
+     spaces around operators,
+     variables, (), etc
+     { } placement ...
+
+    Comments                        2/2
+
+
+Remarks:
+- 
+
+Total:                              X/25

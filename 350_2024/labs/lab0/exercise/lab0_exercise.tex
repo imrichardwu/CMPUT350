@@ -1,0 +1,52 @@
+\documentclass[a4paper,11pt]{article}
+\include{../../../latex_headers/lab_header}
+
+% ---------------------------------- Document ----------------------------------
+\begin{document}
+\pagenumbering{arabic}
+
+\begin{center}
+{\Large CMPUT 350 Lab 0 Exercise Problems}
+\end{center}
+
+\labrules{gcc -g -Wall -Wextra -Wconversion -Wsign-conversion -O ...}{p1.c p2.c}{0}
+
+1. [11 marks] In file \texttt{p1.c} implement the following functions:
+\begin{cppcode*}{linenos=false}
+// precond: n > 0
+void simple_sort(int A[], int n) {
+    // ...
+}
+
+// Test code
+// check whether simple_sort works by setting up an array
+// and printing its elements after sorting
+void test() {
+    // ...
+}
+\end{cppcode*}
+
+\texttt{simple\_sort} rearranges elements in array \texttt{A} in non-decreasing order. 
+In function \texttt{main()} test \texttt{simple\_sort} by calling it with an initialized array and
+printing the sorted result. 
+Simple-Sort works by iteratively determining the minimum element, 
+swapping it with the first element, shortening the array by one element, 
+and continuing the process until there is no work left to do. \\
+
+We provide skeleton files, along with a \texttt{main} which calls your \texttt{test} function.
+To compile the files, 
+\[ \texttt{gcc -g -Wall -Wextra -Wconversion -Wsign-conversion -O p1.c p1\_main.c} \]
+ 
+\linerule
+
+2. [14 marks]  Files \texttt{p2.h} and \texttt{p2.c} contains an empty linked-list structure implementation. 
+The end of a list is marked by a node with \texttt{next = 0}.
+In file \texttt{p2.c}, implement the functions using \texttt{malloc}/\texttt{free} 
+(\textbf{NOT} \texttt{new}/\texttt{delete}!)
+
+We provide skeleton files, along with a \texttt{main} which calls your \texttt{test} function.
+To compile the files, 
+\[ \texttt{gcc -g -Wall -Wextra -Wconversion -Wsign-conversion -O p2.c p2\_main.c} \]
+
+
+\end{document}

@@ -1,0 +1,58 @@
+----------------------------------------
+Question 1:
+Compiling and checking for warnings:
+ 
+ 
+Test 1: Zero sized array, expecting assertion
+p1_marker: p1.c:8: simple_sort: Assertion `n > 0' failed.
+./mark.sh: line 18: 200214 Aborted                 (core dumped) ./p1_marker 0
+ 
+Test 2: Non-zero sized array
+==200217== Memcheck, a memory error detector
+==200217== Copyright (C) 2002-2024, and GNU GPL'd, by Julian Seward et al.
+==200217== Using Valgrind-3.23.0 and LibVEX; rerun with -h for copyright info
+==200217== Command: ./p1_marker 10
+==200217== 
+Success.
+==200217== 
+==200217== HEAP SUMMARY:
+==200217==     in use at exit: 0 bytes in 0 blocks
+==200217==   total heap usage: 3 allocs, 3 frees, 4,176 bytes allocated
+==200217== 
+==200217== All heap blocks were freed -- no leaks are possible
+==200217== 
+==200217== For lists of detected and suppressed errors, rerun with: -s
+==200217== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+----------------------------------------
+----------------------------------------
+Question 2:
+Compiling and checking for warnings:
+ 
+ 
+Test 1: Zero sized linked list, expecting assertion
+Pass.
+ 
+Test 2: Non-zero sized linked list
+==200232== Memcheck, a memory error detector
+==200232== Copyright (C) 2002-2024, and GNU GPL'd, by Julian Seward et al.
+==200232== Using Valgrind-3.23.0 and LibVEX; rerun with -h for copyright info
+==200232== Command: ./p2_marker 10
+==200232== 
+Failed, data miss-match.
+==200232== 
+==200232== HEAP SUMMARY:
+==200232==     in use at exit: 320 bytes in 20 blocks
+==200232==   total heap usage: 21 allocs, 1 frees, 4,416 bytes allocated
+==200232== 
+==200232== LEAK SUMMARY:
+==200232==    definitely lost: 0 bytes in 0 blocks
+==200232==    indirectly lost: 0 bytes in 0 blocks
+==200232==      possibly lost: 0 bytes in 0 blocks
+==200232==    still reachable: 320 bytes in 20 blocks
+==200232==         suppressed: 0 bytes in 0 blocks
+==200232== Reachable blocks (those to which a pointer was found) are not shown.
+==200232== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==200232== 
+==200232== For lists of detected and suppressed errors, rerun with: -s
+==200232== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+----------------------------------------

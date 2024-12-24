@@ -127,6 +127,7 @@ void Grid::computeConnectedComponents(int size, Grid::Tile tileType) const {
     connectedComponentsCache[std::make_pair(size, tileType)] = components;
 }
 
+// Find the shortest path between two cells
 int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2, std::vector<Direction> &path) const {
     path.clear();
     // Check given cells are not connected

@@ -1,0 +1,71 @@
+Lab 4
+Marker: 
+
+36 marks
+ 
+compile with g++ -Wall -Wextra -Wconversion -Wsign-conversion -std=c++17 -O -g Rational.cpp main.cpp
+
+  errors:           0/-6
+  warnings:         0/-3
+  
+Functionality 28
+
+    Rational(int n=0, int d=1);         1/1
+      or multiple contructors 
+      assert(d);                        1/1
+      negate d,n if d < 0               1/1
+
+    class operators:
+  
+      use const Rational &rhs           1/1
+      const methods                     1/1
+      wherever possible
+
+      return Rational for +-*/          2/2
+
+      operator+                         2/2
+      operator-                         2/2
+      operator*                         2/2
+      operator/
+        computation correct             1/1
+        catch div by 0                  1/1
+        prevent den < 0                 1/1
+      operator==                        2/2
+      operator!=                        2/2
+
+      int get_num() const;              1/1
+      int get_den() const;              1/1
+      or make << a friend
+
+      pre++                             2/2
+      post++                            2/2
+
+    global operator
+  
+      return ostream &                  1/1
+      pass on const Rational &          1/1
+
+Coding Style 6
+
+    Prevent double inclusion            1/1
+      in .h file
+    No implementation                   1/1
+      in .h file 
+    Indentation                         1/1
+    Consistency                         1/1
+     spaces around operators,
+     variables, (), etc
+     { } placement ...
+
+    Comments                            2/2
+
+Tests 2
+
+    trigger construction assert         1/1
+    trigger div by 0 assert             1/1
+
+
+Remarks:
+- 
+
+Total:                              X/36

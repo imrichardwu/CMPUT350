@@ -1,0 +1,97 @@
+\documentclass[a4paper,11pt]{article}
+\include{../../../latex_headers/lab_header}
+
+% ---------------------------------- Document ----------------------------------
+\begin{document}
+\pagenumbering{arabic}
+
+\begin{center}
+{\Large CMPUT 350 Lab 0 Prep Problems}
+\end{center}
+
+\linerule
+
+1. Define a C function \texttt{array\_add} that adds an integer array to another element-wise. \\
+
+Type the following code into file \texttt{ex1.c} and then add function
+\texttt{array\_add} with your favourite editor. 
+Also print array \texttt{u} element by element after calling \texttt{array\_add}. 
+Then compile the program using \texttt{gcc -Wall -Wextra ex1.c}. 
+This should not generate any warnings or errors. \\
+
+When running your program, can you explain the output you see?
+
+\begin{cppcode*}{linenos=false}
+#define N 20   // C-style constant: N gets replaced by 20 below
+               // (deprecated in C++)
+int main() {
+    int u[N]; // allocates int arrays of length N on stack
+    int v[N];
+    // adds v[i] to u[i] for i=0..N-1
+    array_add(u, v, N);
+    return 0;
+}
+\end{cppcode*}
+ 
+\linerule
+
+2. Consider this Matrix structure which describes a matrix comprised of rows*cols
+double numbers:
+
+\begin{cppcode*}{linenos=false}
+struct Matrix {
+    int rows;
+    int cols;
+    double *a;  // pointer to rows*cols elements
+};
+\end{cppcode*}
+
+Implement these functions in \texttt{ex2.c}:
+\begin{cppcode*}{linenos=false}
+// initialize matrix pointed to by m with r rows and c columns
+// i.e. allocate sufficient memory and set all elements to 0
+void init(struct Matrix *m, int r, int c);
+
+// free memory associated with matrix pointed to by m
+void deallocate(struct Matrix *m);
+\end{cppcode*}
+
+Usage:
+
+\begin{cppcode*}{linenos=false}
+int main() {
+    struct Matrix m;
+    init(&m, 20, 30);  // pass address of m and dimensions to function
+    // ... use matrix m
+    deallocate(&m);
+    return 0;
+}
+\end{cppcode*}
+
+Start by copying and pasting above code snippets into file \texttt{ex2.c}.
+Compile your program with:
+\[\texttt{gcc -Wall -Wextra ex2.c}\]
+and make sure that there are no errors or warnings.
+
+
+\linerule
+
+3. Copy \texttt{ex1.c} to \texttt{ex1buggy.c}, 
+add a segfault bug 
+(such as \texttt{int *p = 0; *p = 0} in main),
+and compile it with \texttt{gcc -g ex1buggy.c}.
+The \texttt{-g} flag adds debug information. 
+Running your program should yield a segmentation fault message.\\
+
+Launch \texttt{gdb a.out}, then type \texttt{run} followed by the \texttt{ENTER} key. 
+You should then see the error line.
+
+\linerule
+
+4. Copy \texttt{ex2.c} to \texttt{ex2buggy.c}, add a memory leak bug (e.g. by removing \texttt{free()}), and compile with \texttt{-g}. 
+Then launch \texttt{valgrind --leak-check=full ./a.out}. 
+This will show you that there is a memory leak in your program.
+
+
+
+\end{document}

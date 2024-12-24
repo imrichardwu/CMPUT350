@@ -1,0 +1,30 @@
+Lab exercise 11 marks (18 total)
+
+Marker: 
+
+
+errors:                             0/-4
+no errors, but warnings:            0/-2
+
+best practices issues like          0/-3
+insufficient comments,
+inconsisten indentation,
+and unhelpful identifiers
+
+Part 1
+
+  Best response correct             6/6
+  Row player value correct          2/2
+
+Part 2
+
+  min_A correct                     2/2
+  written LPs correct               8/8
+
+
+Remarks:
+- 
+
+
+
+Total:                              X/18

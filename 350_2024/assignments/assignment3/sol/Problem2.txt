@@ -1,0 +1,161 @@
+Part 2: PRA* Map Abstraction
+
+A) Apply the clique-based abstraction used in PRA* (ai-part2, page 12) to the
+graph below, For this, scan the nodes from top-left to bottom-right - row by
+row, identifying new maximum size complete subgraphs of size up to 4 that can
+be abstracted into new nodes in the next abstraction level - starting from the
+current node and scanning its unvisited neighbourhood. Continue this process
+until only one node remains, showing the resulting abstraction levels and
+indicating which nodes got abstracted by what node in the process. Use
+uppercase letters A,B,C,... to name new abstract nodes and explain all steps
+
+a-b-c-d-e-f-g
+|   |   |   |
+h-i j-k l-m-n 
+|   |       |
+o-p-q-r-s-t-u
+
+
+B) Assuming the original graph size is N=4**n (power) and clique-based
+abstraction being able to always group 4 nodes to form a new abstract node in
+each step
+
+i) how many nodes does the k-th abstraction level consist of (k=0: original
+   graph with 4**n nodes, k=1: first abstraction level with ? nodes, etc.)?
+
+ii) which abstraction level contains exactly one node? Explain
+
+iii) assuming we reach one node at abstraction level n=2u for an integer u,
+  how many nodes does abstraction level u consist of in relation to the
+  original number N=4**n? Simplify your answer and explain your steps
+
+iv) Prove that the clique abstraction used in PRA* preserves connectivity,
+  i.e., given A,A' and B,B', where A' is the abstract node for A and B' is
+  the abstract node for B, there is a path from A to B in the original map if
+  and only if there is a path from A' to B' in the abstract map
+
+============================================================================
+
+Solution:
+
+A)
+
+level 0
+
+a-b-c-d-e-f-g
+|   |   |   |
+h-i j-k l-m-n 
+|   |       |
+o-p-q-r-s-t-u
+
+
+A: {a,b}
+B: {c,d}
+C: {e,f}
+D: {g,n}
+E: {h,i}
+F: {j,k}
+G: {l,m}
+H: {o,p}
+I: {q,r}
+J: {s,t}
+K: {u}
+
+level 1
+
+A-B-C-D
+| | |/|
+E F G |
+| |   |
+H-I-J-K
+
+L: {A,B}
+M: {C,D,G}
+N: {E,H}
+O: {F,I}
+P: {J,K}
+
+level 2
+
+L-M
+|\ \
+N-O-P
+
+Q: {L,N,O}
+R: {M,P}
+
+level 3
+
+Q-R
+
+T: {Q,R}
+
+level 4
+
+
+B)
+
+i) in each step the number of nodes is reduced by a factor of 4.
+   Therefore, at level k, the number of nodes reaches 4**(n-k)
+
+ii) consequently, for k = n we reach 1 one (4**(n-n) = 1)
+
+iii) based on part2 we have k=n=2u => u = n/2. Applying part 1, the u-th
+   abstraction level contains 4**(n-u) = 4**(n-n/2) = 4**(n/2) = sqrt(4**n) =
+   sqrt(N). So the node number is reduced from N to sqrt(N)
+
+iv)
+
+  Prove that the clique abstraction used in PRA* preserves connectivity,
+  i.e., given A,A' and B,B', where A' is the abstract node for A and B' is
+  the abstract node for B, there is a path from A to B in the original map if
+  and only if there is a path from A' to B' in the abstract map
+
+Proof: To prove the equivalence we show that both implications hold
+
+"=>" :
+
+Assume there exists path (v_1, v_2, ..., v_n) with A=v_1 and B=v_n in the
+original map that connects A with B. For each v_i, select its abstract
+counterpart w_i and consider the resulting abstract node sequence:
+
+     (w_1, w_2, ..., w_n) with A'=w_1 and B'=w_n
+
+which may contain consecutive node repetitions. E.g., (A',A',A',X',B',B') if
+the original path visited 3 nodes that are mapped to A' first, followed by one
+original node that was mapped to X', and two original nodes that map to B'.
+
+After collapsing consecutive duplicates into one node (e.g., (A',X',B') in the
+example above), we end up with a abstract node sequence without consecutive
+duplicates:
+
+     (z_1, z_2, ..., z_k) with A'=z_1 and B'=z_k
+
+For k = 1, we are done: the abstraction result is a singleton (A'=B'), i.e., a
+valid abstract path.
+
+For k > 1, pick i in {1..k-1} and consider abstract node pair (z_i, z_(i+1)).
+These abstract nodes are connected, because their corresponding original nodes
+w_x and w_y are connected and z_i and z_(i+1) are connected by definition if
+and only if there is an original connection between any original node mapping
+to z_i and z_(i+1), respectively.
+
+
+"<="
+
+Assume there exists abstract path
+
+     (z_1, z_2, ..., z_k) with A'=z_1 and B'=z_k
+
+If k = 1, we know that A and B are both mapped to A'=B'. This means they lie
+in the same clique, and thus there is a path in the original map connecting
+them.
+
+If k > 1, to construct a path from A to B in the original map we proceed
+iteratively for i=1..k-1, starting with path (A), and extending it. At step i,
+because z_i is connected to z_(i+1), from the current endpoint in our
+constructed path (that maps to z_i) we can find a path to an original node
+that maps to z_(i+1). This local path will be added to our constructed path,
+and we continue. Finally, because z_k=B', we can find an original node path
+from the last node in our constructed path to B, which we add to it. The
+result is a path in the original map that reaches B starting in A.

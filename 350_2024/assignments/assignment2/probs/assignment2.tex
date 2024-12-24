@@ -1,0 +1,179 @@
+\documentclass[a4paper,11pt]{article}
+\include{../../../latex_headers/assignment_header}
+
+
+% ---------------------------------- Document ----------------------------------
+\begin{document}
+\pagenumbering{arabic}
+
+\begin{center}
+{\Large CMPUT 350 Assignment 2} \\
+{Due: Wednesday Oct. 9, 22:00}
+\end{center}
+
+\linerule
+
+\textbf{Important}:
+Read this text completely and start working on the assignment as
+soon as possible. Only then will you get an idea about how long it will take
+you to complete it. 
+
+\medskip
+
+If you worked on the assignment on your personal computer, copy your files to
+the undergraduate lab machine (e.g. uf13.cs.ualberta.ca) with
+scp and then test your code there as well before submitting it. 
+Like the labs, we will be using this environment to test your code.
+
+\medskip
+
+When done, submit your solution files on eClass:
+
+\begin{center}
+    \texttt{README.txt World.cpp Marine.cpp Tank.cpp Experiments.txt Problem2.txt/pdf}
+\end{center}
+
+
+\bigskip 
+
+Your submissions will be marked considering their correctness (syntax and
+semantics), documentation, efficiency, and consistent coding style. Add assert
+statements to check important pre/post-conditions.
+
+\medskip
+
+Finally, make sure that you follow the course collaboration policy which is
+stated on the course webpage. File \texttt{README.txt} must be completed!
+
+\linerule
+
+1. RTS-Combat Simulator [116 marks] \\
+In this part you will complete a simulator for an RTS-like combat game.
+Circular units representing marines and tanks are roaming a rectangular map.
+They fight opponents' units whenever they come in attack range, but their
+motion policy is simplistic: they never collide with other units, but when
+hitting the map border, they either stop or bounce off similar to billiard
+balls.
+
+\bigskip
+
+We provide executable file \texttt{simul.lab} which runs on the lab machines and shows
+you how the simulator is supposed to work (in principle) when all parts have
+been implemented. Because there are some implementation choices, we don't
+expect your program to work exactly as \texttt{simul.lab}
+
+\bigskip
+
+The makefile can generate code for 2 scenarios: Option 1 creates code that can
+be run remotely through an \texttt{ssh -X ... session} (provided your local computer
+runs an XWindows server). Option 2 is generates a (faster) version that only
+runs when sitting in front of a lab machine. Comment out the option you
+don't use.
+
+\bigskip
+
+The simulator takes various parameters. To see a list, run \texttt{./simul.lab x}. To
+check your code for memory leaks run valgrind with \texttt{--leak-check=full}. This
+will report where leaks exactly happen. This way you can distinguish leaks in
+GL and glut from yours. Another idea is to test your code without graphical
+output to speed up experiments.
+
+\bigskip
+
+To compile the project, run make. This creates executable file simul, which by
+default opens an OpenGL window showing hundreds of units fighting until one
+team has no units left (or both).
+
+\bigskip
+
+We consider two unit types: Marine and Tank. They have the following 
+unit stats:
+\begin{verbatim}
+                       Marine     Tank
+    radius              10         20
+    attack_radius       40         80
+    max_speed           10         15
+    damage               1          4
+    hp                  45        100
+\end{verbatim}
+
+Those properties have to be initialized in the units' constructors.
+There are two steps of solving this problem:
+\begin{enumerate}
+    \item 
+    Understand the provided code and complete it by implementing all functions
+    commented with \texttt{// ... implement} 
+
+    \medskip
+ 
+    Only change the source files you will submit: \texttt{World.cpp} \texttt{Marine.cpp} \texttt{Tank.cpp} .
+    We won't see any changes you make to \texttt{.h} files and to \texttt{World2.cpp}
+
+    \medskip
+ 
+    We suggest to compare the output of your simulator with that of \texttt{simul.lab}'s
+    using small unit counts and bounce switched off and on
+
+    \medskip
+ 
+    If you encounter runtime issues, it is a good idea to pass on a random
+    number seed != 0 to make program runs repeatable
+
+    \medskip
+
+    \item 
+    Use YOUR program in a set of experiments that determine which of the three
+    attack policies (selecting a random weakest, random closest, and random
+    most dangerous target) is the strongest for the following parameter
+    settings:
+ 
+\begin{verbatim}
+    width=height    :   700
+    marines=tanks   :   20, 50, 100, 300
+    bounce          :   true
+    redpol/bluepol  :   all combinations
+\end{verbatim}
+ 
+    To gain statistical confidence, run each setting 100+ times (with differnt
+    seeds). We'd like to see a brief writeup in \texttt{Experiment.txt} explaining your
+    experiments and how you interpret the results
+\end{enumerate}
+
+For this programming assignment you CAN use {\CC} containers or functions from
+\texttt{STL} and Boost that are installed on the lab machines. In particular, class
+template \texttt{std::vector<T>} will be used extensively in this assignment which we
+will cover later in the course. For our purposes, you only need to know that a
+\texttt{std::vector<T> v;} behaves like a dynamic array of type \texttt{T}. E.g., \texttt{std::vector<int> v;}
+defines an empty \texttt{int} vector. You can access elements by index like arrays
+(e.g., \texttt{v[0]}), you can query its size by calling \texttt{v.size()}, you can add elements
+at the end using \texttt{v.push\_back(x);} and remove the last element using
+\texttt{v.pop\_back()}. If you need more information about \texttt{std::vector}, please consult
+\url{http://www.cplusplus.com/reference/vector/vector/} or other online material.
+
+\bigskip 
+
+Your submission must compile on the lab machines without errors/warnings using
+the provided makefile and running ``\texttt{make}'' . It will be marked considering its
+correctness (syntax + semantics), documentation, efficiency, and coding
+style. Add assert statements to check important pre/post-conditions
+
+\linerule
+
+\bigskip
+
+2. [40 marks] 
+For this part please provide solutions (i.e., formal proofs/disproofs) in file
+\texttt{Problem2.txt} (or \texttt{Problem2.pdf} if you prefer to use a text processor like \LaTeX \ 
+or Word). Be as formal as you can, demonstrating - based on the definitions
+introduced in class - a rigorous chain of logical implications leading from
+the premise to the conclusion - or providing a counter example:
+
+\begin{enumerate}[label=(\alph*)]
+    \item Prove that optimal heuristics (i.e. $h^*(n)$) are consistent
+    \item Prove: If $h_1(n), \dots, h_k(n)$ are admissible, so is $h(n) = \text{max}(h_1(n), \dots, h_k(n))$
+    \item Prove: If $h_1(n), \dots, h_k(n)$ are consistent, so is $h(n) = \text{max}(h_1(n), \dots, h_k(n))$
+    \item Prove or disprove: If $h_1(n), \dots, h_k(n)$ are admissible, so is $h(n) = h_1(n) + ... + h_k(n)$
+    \item Prove or disprove: If $h_1(n), \dots, h_k(n)$ are admissible, so is $h(n) = (h_1(n) + ... + h_k(n))/k$
+\end{enumerate}
+
+\end{document}

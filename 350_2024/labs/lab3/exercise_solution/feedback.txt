@@ -1,0 +1,47 @@
+Lab 3
+Marker: 
+
+
+31 marks
+ 
+compile with g++ -Wall -Wextra -Wconversion -Wsign-conversion -O -g -std=c++17 AnimalSim.cpp
+
+errors:                             0/-6
+warnings:                           0/-2
+memory leaks:                       0/-4
+
+Functionality 19
+
+  Animal contains all               2/2
+  common data
+  
+  Mouse                             2/2 
+  Goose                             2/2
+  Rabbit                            3/3
+  Bear                              4/4
+
+  World::print()                    3/3
+
+  World::simulate()                 3/3
+
+Testing 4
+
+  Given test case implemented       4/4
+
+
+Coding Style 8
+
+ Indentation                        2/2
+
+ Consistency                        2/2
+  spaces around operators,
+  variables, (), etc
+  { } placement ...
+
+ Comments                           4/4
+
+
+Remarks:
+- 
+
+Total:                              X/31

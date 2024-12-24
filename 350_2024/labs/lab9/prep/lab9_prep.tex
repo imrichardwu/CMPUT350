@@ -1,0 +1,152 @@
+\documentclass[a4paper,11pt]{article}
+\include{../../../latex_headers/lab_header}
+
+
+% ---------------------------------- Document ----------------------------------
+\begin{document}
+\pagenumbering{arabic}
+
+\begin{center}
+{\Large CMPUT 350 Lab 9 Prep Problems}
+\end{center}
+
+% Add important dates, change TA, add TA tools
+
+\linerule
+
+
+\section*{Tic-Tac-Toe}
+\begin{itemize}
+    \item Played on a 3x3 board
+    \item Two players move alternately by marking an empty square with their symbol
+        (x and o, respectively)
+    \item The player who first creates 3 of his symbols in a row (horizontally, vertically, or diagonally) wins
+    \item The game ends when there are no moves left
+    \item If at that time nobody has created a 3-in-a-row configuration, the game is counted as a draw
+\end{itemize}
+
+Sample Game:
+\begin{verbatim}
+    ---  x   --x   o    --x  x   -xx  o   -xx  x   xxx
+    --- ---> ---  --->  -o- ---> -o- ---> -oo ---> -oo  x wins
+    ---      ---        ---      ---      ---      ---
+\end{verbatim}
+
+
+\section*{MiniMax Search Applied to Tic-Tac-Toe}
+For a review of \textit{MiniMax Search}, see the AI part 4 notes \textbf{part4.pdf}.
+
+\subsection*{Game Tree}
+\begin{itemize}
+    \item Vertices represent game states
+    \item The root vertex represents the state at the beginning of the game
+    \item Edges represent moves
+    \item Leaf vertices mark the end of a particular move sequence. 
+        The game ends there (terminal game states)
+    \item Each leaf has an associated payoff value (e.g., +1 for player MAX)
+\end{itemize}
+
+\subsection*{MiniMax Search}
+\begin{itemize}
+    \item MiniMax search backs up values starting with leaves
+    \item Assumes we have two players: MAX and MIN (x and o in this case)
+    \item Uses the minimax rule (maximizing scores in MAX nodes, minimizing in MIN
+         nodes) if the values are stored in view of player MAX
+    \item \textbf{Alternative}: NegaMax search always evaluates states in view of the player
+    to move. This simplifies the code, because we only ever need to maximize
+    scores. 
+    \item \textbf{Important}: assuming alternating moves the returned value has to be
+    negated
+\end{itemize}
+
+\subsection*{Tic-Tac-Toe Game Tree 1}
+{\small
+\begin{verbatim}
+                 ---
+                 ---                   [x to move]
+                 ---
+    
+          / / / / | \ \ \ \            9 moves; pick one with highest value
+                                       in view of player to move
+        x--               ---
+        ---     .....     ---          [o to move]
+        ---               --x
+      ////\\\\          ////\\\\       8 moves in each state
+     
+     xo-                       o--
+     ---  ...         ...      ---     [x to move]
+     ---                       --x
+      .        etc.             .
+      .         .               .
+      .         .               .
+     xox        .              oxo
+     oox                       xox     [o to move]
+     oxx                       oxx
+    
+     x wins                    o wins    
+\end{verbatim}
+}
+
+\subsection*{Tic-Tac-Toe Game Tree 2}
+What is the value of this game state in view of player x?
+
+{\small
+\begin{verbatim}
+    xoo
+    --x  [x to move]
+    -o- 
+\end{verbatim}
+}
+[ draw game tree on a piece of paper ]
+
+
+\subsection*{Game Tree Search Mechanics}
+MiniMax or NegaMax (preferred) search can be implemented by
+depth-first-search, copying states and applying moves to the copied states as
+we go down the game tree until we reach a terminal state, which gets evaluated
+and its value passed back to the caller for maximization of the negated value
+(NegaMax) or minimization/maximization of the returned value depending on
+whose turn it is (MiniMax)
+
+\medskip
+
+Please refer to lecture notes \textbf{part4.pdf} 
+(especially page 27) for details and code snippets you may want to use.
+
+
+
+\subsection*{Tuples}
+In this exercise you'll use \texttt{std::tuple}, which is a generalization
+of \texttt{std::pair}. Tuples contain a sequence of data items that don't
+necessarily share the same type. Individual items can be accessed by
+\texttt{std::get<i>(tuple)}.
+
+\medskip
+
+\textbf{Example}:
+{\small
+\begin{verbatim}
+    std::tuple<int,double,char> t(0, 3.5, 'x');
+    std::cout << get<0>(t) << " " << get<1>(t) << " " << get<2>(t) << std::endl;
+    // prints 0 3.5 x
+\end{verbatim}
+}
+
+
+\linerule
+
+1. In this problem you will implement missing functions of a tic-tac-toe program
+that read a game state from a string, print it to stdout, and determine
+whether a board is completely filled.\\
+
+In file \texttt{ttt1.cpp}, which is given, implement the parts marked with
+
+{\small
+\begin{verbatim}
+    // ... implement
+\end{verbatim}
+}
+
+You may want to use this script file to compile your program: \texttt{make1}
+
+\end{document}

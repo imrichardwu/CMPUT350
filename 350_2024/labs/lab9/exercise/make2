@@ -1,0 +1,3 @@
+g++ -g -Wall -Wextra -std=c++17 -O -D_GLIBCXX_DEBUG ttt2.cpp
+
+

@@ -1,0 +1,109 @@
+\documentclass[a4paper,11pt]{article}
+\include{../../../latex_headers/lab_header}
+
+
+% ---------------------------------- Document ----------------------------------
+\begin{document}
+\pagenumbering{arabic}
+
+\begin{center}
+{\Large CMPUT 350 Lab 1 Exercise Problems}
+\end{center}
+
+\labrules{g++ -g -Wall -Wextra -Wconversion -Wsign-conversion -O -std=c++17 ...}{p1.cpp p2.cpp}{1}
+
+1. [9 marks] Write {\CC} program \texttt{p1.cpp} which implements and tests function
+\[ \cppinline{void rotate_right(int A[], int n);} \]
+
+\texttt{rotate\_right} shifts all elements of n-element array \texttt{A} one location to the right, 
+and stores the original right-most entry into the left-most position. \\
+
+\textbf{Examples}:
+\begin{itemize}
+    \item \texttt{A[]} before call:    1 2 3 4 5 6
+    \item \texttt{A[]} after call:     6 1 2 3 4 5
+    \item after another call: 5 6 1 2 3 4
+    \item etc.
+\end{itemize}
+
+Test your function using a couple of test cases in \texttt{main()} including one which
+rotates an n-element array \texttt{n} times and checks whether the resulting array is
+the same as the one you started with.
+ 
+\linerule
+
+\newpage
+
+2. [12 marks] Write {\CC} program \texttt{p2.cpp} that reads a sequence of int array pairs 
+(in decimal notation with white-space characters [space, newline, tab] as delimiter) from
+\texttt{stdin} and prints their component-wise product to stdout. \\
+
+Inputs consist of multiple instances. Your program must handle them all and
+only stop when encountering the end of the input or an input error. 
+You may assume that each individual instance fits in memory. 
+In case of an input error, your program \textbf{needs} to report ``\texttt{input error}'' to
+\texttt{stderr} and \textbf{return with value 1}. 
+If everything is OK, the program needs to \textbf{return with value 0}. \\
+
+\textbf{Example}: Suppose \texttt{input.txt} contains the following 3 instances:
+\begin{cppcode}
+10
+0 1 2 3 4 5 6 7 8 9
+9 8 7 6 5 4 3 2 1 0
+5
+2 3 4 -1 6
+1 1 1 1 1
+1
+8
+5
+\end{cppcode}
+
+Running the command \texttt{./p2 < input.txt} should then yield the following output:
+\begin{verbatim}
+10
+0 8 14 18 20 20 18 14 8 0
+5
+2 3 4 -1 6
+1
+40
+\end{verbatim}
+
+In general, the input looks as follows:
+\begin{verbatim}
+  Instance_1
+  Instance_2
+  ...
+  Instance_k
+\end{verbatim}
+
+for which each instance is described by:
+\begin{verbatim}
+  n            # (> 0) length of the two input arrays
+  n ints       # first array
+  n ints       # second array
+\end{verbatim}
+
+The output for each instance has the form:
+\begin{verbatim}
+  n            # length of output array
+  n ints       # output array (= product of two input arrays)
+\end{verbatim}
+
+Handle each input instance one at a time, 
+and outputting the result before moving onto the next instance.
+
+\newpage
+
+\textbf{Hints}:
+\begin{itemize}
+    \item All you need for input is \texttt{std::cin >> input}; where input is an int variable
+        (the line format is irrelevant, what matters is that all numbers are
+        separated by white-space characters, which \texttt{cin >> input} consumes but ignores)
+    \item For testing, prepare text files with various inputs (legal and illegal) and
+        redirect them into your application like so: \texttt{./a.out < test-input}
+    \item Use \texttt{valgrind} to check for memory leaks (see Lab 0)
+\end{itemize}
+
+
+
+\end{document}

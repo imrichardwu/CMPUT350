@@ -1,0 +1,38 @@
+\documentclass[a4paper,11pt]{article}
+\include{../../../latex_headers/lab_header}
+
+
+% ---------------------------------- Document ----------------------------------
+\begin{document}
+\pagenumbering{arabic}
+
+\begin{center}
+{\Large CMPUT 350 Lab 2 Exercise Problems}
+\end{center}
+
+\labrules{g++ -Wall -Wextra -Wconversion -Wsign-conversion -O -g -std=c++17 ...}{Matrix.cpp matrixTest.cpp}{2}
+
+1. [25 marks] Consider the following Matrix class that represents an r$\times$c int matrix,
+and stores all elements in a one-dimensional array listed below. \\
+
+Using the provided \texttt{Matrix.h}, create files \texttt{Matrix.cpp}, and \texttt{matrixTest.cpp} in which you
+implement its methods, and test them, respectively.\\
+
+
+\texttt{Matrix.h} must not contain any method implementation!
+
+
+Sample \cppinline{print()} output looks like this (r=3, c=4):
+\begin{verbatim}
+    0 1 2 3 
+    4 5 6 7 
+    8 9 10 11 
+\end{verbatim}
+
+
+\newpage
+
+\cppfile{Matrix.h}
+
+
+\end{document}

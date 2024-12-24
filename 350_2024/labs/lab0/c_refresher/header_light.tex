@@ -1,0 +1,63 @@
+\documentclass{beamer}
+% \usetheme{Madrid}
+\usetheme{default}
+
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{mathtools}          % Enhances amsmath
+
+\usepackage{xcolor}             % Custom colours
+\usepackage{minted}             % Code display + formatting
+
+\definecolor{lbcolor}{rgb}{0.98,0.98,0.98}
+\definecolor{bgatomone}{rgb}{0.156,0.173,0.2}
+
+% Blocks color/box since we are using default theme
+\setbeamercolor{block body alerted}{bg=alerted text.fg!10}
+\setbeamercolor{block title alerted}{bg=alerted text.fg!20}
+\setbeamercolor{block body}{bg=structure!10}
+\setbeamercolor{block title}{bg=structure!20}
+\setbeamercolor{block body example}{bg=green!10}
+\setbeamercolor{block title example}{bg=green!20}
+\setbeamertemplate{blocks}[rounded]
+
+\newminted{cpp}{
+    fontsize=\footnotesize,
+    frame=single,
+    breaklines=true,
+    linenos=true,
+    mathescape=true,
+    numbersep=2pt,
+    bgcolor=lbcolor,
+    style=defaultlight,
+}
+\newmintinline{cpp}{
+    bgcolor=lbcolor,
+    style=defaultlight,
+}
+\newmintedfile{cpp}{
+    fontsize=\scriptsize,
+    frame=single,
+    breaklines=true,
+    linenos=true,
+    mathescape=true,
+    numbersep=2pt,
+    bgcolor=lbcolor,
+    style=defaultlight,
+}
+
+\setbeamercolor{background canvas}{bg=lbcolor}
+
+\newcommand{\CC}{C\texttt{++}}
+
+% format et al.
+\def\etal{\textit{et al.}}
+\def\ie{\textit{i.e.}}
+\def\eg{\textit{e.g.}}
+
+\addtobeamertemplate{navigation symbols}{}{%
+    \usebeamerfont{footline}%
+    \usebeamercolor[fg]{footline}%
+    \hspace{1em}%
+    \insertframenumber/\inserttotalframenumber
+}

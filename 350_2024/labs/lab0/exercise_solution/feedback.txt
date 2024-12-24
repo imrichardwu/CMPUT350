@@ -1,0 +1,57 @@
+Lab 0
+Marker: 
+
+1)  11 marks
+
+    gcc -g -Wall -Wextra -Wconversion -Wsign-conversion -O p1.c
+    error message(s)                        0/-3
+    no error, but warning(s)                0/-2
+
+    Functionality  6
+
+      selection_sort works                  3/3
+      test code is meaningful               3/3
+      (at least all functions called)
+
+    Coding style   3
+
+     Indentation                          1.5/1.5
+     Consistency                          1.5/1.5
+      spaces around operators,
+      variables, (), etc
+      { } placement ...
+
+    Comments                                2/2
+
+    Remarks:
+    - 
+
+2)  14 marks
+
+    gcc -g -Wall -Wextra -Wconversion -Wsign-conversion -O p2.c
+    error message(s)                        0/-3
+    no error, but warning(s)                0/-2
+
+    Functionality  9
+
+      create works                          3/3
+      deallocate works                      3/3
+      (includes no memory leak)
+      test code is meaningful               3/3
+      (at least all functions called)
+
+    Coding style   3
+
+     Indentation                          1.5/1.5
+     Consistency                          1.5/1.5
+      spaces around operators,
+      variables, (), etc
+      { } placement ...
+    
+    Comments                                2/2
+
+    Remarks:
+    - 
+
+
+Total:                                      X/25

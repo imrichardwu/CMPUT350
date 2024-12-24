@@ -1,0 +1,45 @@
+\documentclass[a4paper,11pt]{article}
+\include{../../../latex_headers/lab_header}
+
+
+% ---------------------------------- Document ----------------------------------
+\begin{document}
+\pagenumbering{arabic}
+
+\begin{center}
+{\Large CMPUT 350 Lab 9 Exercise Problems}
+\end{center}
+
+\labrules{g++ -Wall -Wextra -O -g -std=c++17 ...}{ttt2.cpp}{9}
+
+
+1. [25 marks]
+
+In this exercise you will complete a program that solves tic-tac-toe states
+using \textbf{negamax search} (see AI part4 page 27). I.e., your program will answer
+who wins in a given game situation assuming perfect play on both sides.\\
+
+In file \texttt{ttt2.cpp}, which is provided, implement the parts marked with
+{\small
+\begin{verbatim}
+    // ... implement
+\end{verbatim}
+}
+and test your program for correctness and proper cleanup.\\
+
+Use \texttt{./make2} to compile your program. \\
+
+\textbf{IMPORTANT}:
+Ensure that your code works for N-by-N tic-tac-toe, i.e., changing value N to
+other values than 3 should work, e.g.
+{\small
+\begin{verbatim}
+    static constexpr int N = 4;
+\end{verbatim}
+}
+
+The winning condition for N-by-N ttt is having N pieces of the same colour in
+any row, column, or main diagonal. Given that N can vary, you'll need loops to
+detect winning conditions.
+
+\end{document}

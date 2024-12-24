@@ -1,0 +1,49 @@
+\documentclass[a4paper,11pt]{article}
+\include{../../../latex_headers/lab_header}
+
+
+% ---------------------------------- Document ----------------------------------
+\begin{document}
+\pagenumbering{arabic}
+
+\begin{center}
+{\Large CMPUT 350 Lab 4 Exercise Problems}
+\end{center}
+
+\labrules{g++ -Wall -Wextra -Wconversion -Wsign-conversion -O -g -std=c++17 ...}{Rational.h Rational.cpp main.cpp}{4}
+
+
+1. [36 marks] In this exercise you will implement a rational number type that is meant as an
+exact arithmetic replacement for rounding-error-prone floating point
+types. Rational numbers are represented as two integer variables: numerator
+\texttt{num} and denominator \texttt{den > 0}. The rational number they represent is num/den.
+
+\begin{cppcode}
+class Rational {
+public:
+    ...
+private:
+    // only data
+    int num, den;
+};
+\end{cppcode}
+
+
+At all times, \texttt{den} must be \texttt{> 0}. In this exercise we won't deal with arithmetic
+overflow or simplifying rational numbers by dividing num,den by their greatest
+common divisor. However, division by 0 must be checked with an assertion, and
+\texttt{operator==} must work correctly, i.e. two rational numbers are equal if the
+ratios represent the same value (e.g., \texttt{2/4 == 4/8}).
+
+\pagebreak
+
+Declare operators and methods in \texttt{Rational.h }and implement all of them in
+\texttt{Rational.cpp }so that the given code in \texttt{main.cpp} works.
+
+ALL operators and methods have to be implemented in \texttt{Rational.cpp}
+File \texttt{main.cpp} must contain all test code AND code that triggers division by
+0 and an illegal constructor call (division by 0),
+\textbf{but you may leave that code commented out so that your code runs without 
+crashing but that we can see that you have tested your code for those cases.}
+
+\end{document}

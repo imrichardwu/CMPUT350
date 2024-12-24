@@ -1,0 +1,27 @@
+Lab exercise 8 marks (29 total)
+
+Marker: 
+
+compile with g++ -g -Wall -Wextra -std=c++17 -O ...
+
+deductions:
+  error:                            0/-5
+  warning:                          0/-2
+
+inside()                            6/6
+
+Triangulation()                     6/6
+
+Delaunay_pass()                     6/6
+
+locate()                            6/6
+
+Best practices                    
+  - comments                        3/3                       
+  - indentation consistent          2/2
+
+                     
+Remarks:
+
+
+Total:                             X/29

@@ -1,0 +1,35 @@
+Lab exercise 9 marks (25 total)
+
+Marker: 
+
+
+compile with g++ -Wall -Wextra -std=c++17 -O3 ...
+
+error(s):                                   0/-4
+no error, but warnings:                     0/-1
+
+max_value                                   8/8
+  (code only works for N=3: -2)
+
+make_move                                   3/3
+  (assert,filled++,...)
+
+get_to_move                                 1/1
+
+negamax                                     6/6
+  (value correct, best move correct, 
+   only maximizing -negamax(child), ...)
+
+solve                                       4/4
+
+Best practices                              3/3 
+  - indentation consistent
+  - meaningful variable names
+
+
+Remarks:
+- 
+
+
+
+Total:                              X/25

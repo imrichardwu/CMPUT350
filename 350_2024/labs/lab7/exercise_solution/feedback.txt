@@ -1,0 +1,48 @@
+Lab 7
+Marker:
+
+
+1. Histogram [25]  
+
+compilation errors                      0/-4
+warnings                                0/-1
+
+Pair + functor                          4/4
+  or equivalent
+Histo::count                            5/5
+Histo::print                            4/4
+main()                                  6/6
+No memory leaks                         2/2
+Best practices                          4/4 
+  - indentation OK
+  - prevent double inclusion
+  - restrict access to impl. details
+
+Remarks:
+- 
+
+
+
+2. Sorter [15]
+
+compilation errors                      0/-3
+warnings                                0/-1
+
+Point struct + functor                  3/3
+  or equivalent
+Sorter::add_point                       2/2
+Sorter::print_sorted_closest_to         3/3 
+main()                                  3/3
+No memory leaks                         1/1
+Best practices                          3/3 
+  - no warnings/errors
+  - indentation OK
+  - prevent double inclusion
+  - restrict access to impl. details
+
+Remarks:
+- 
+
+
+
+Total:          X/40

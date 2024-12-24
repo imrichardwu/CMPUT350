@@ -1,0 +1,95 @@
+gtime --verbose ./astar sliding_puzzle 7,4,5,12,15,0,6,1,8,14,11,13,10,9,2,3                                                        Py base 11:58:31 pm
+ 7  4  5 12
+15     6  1
+ 8 14 11 13
+10  9  2  3
+
+Solution Found. expanded: 22384028, nodes stored: 39056881, depth: 56, CPU time (s): 57.5417
+0 1 2 3 2 3 0 0 1 1 2 1 0 3 2 2 2 1 0 0 3 2 3 0 0 1 2 2 2 1 0 0 3 2 3 0 3 0 1 1 2 3 2 3 2 1 1 0 3 3 2 1 1 0 1 2
+	Command being timed: "./astar sliding_puzzle 7,4,5,12,15,0,6,1,8,14,11,13,10,9,2,3"
+	User time (seconds): 61.10
+	System time (seconds): 2.77
+	Percent of CPU this job got: 99%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 1:04.40
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 6303808
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 850964
+	Voluntary context switches: 0
+	Involuntary context switches: 11989
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 0
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 16384
+	Exit status: 0
+
+gtime --verbose ./astar_fast sliding_puzzle 7,4,5,12,15,0,6,1,8,14,11,13,10,9,2,3                                             1m 4s Py base 12:00:21 am
+ 7  4  5 12
+15     6  1
+ 8 14 11 13
+10  9  2  3
+
+Solution Found. expanded: 24292757, nodes stored: 65884915, depth: 56, CPU time (s): 33.9076
+0 1 2 3 2 3 0 0 1 1 2 1 0 3 2 2 2 1 0 0 3 2 3 0 0 1 2 2 2 1 0 0 3 2 3 0 3 0 1 1 2 3 2 3 2 1 1 0 3 3 2 1 1 0 1 2
+	Command being timed: "./astar_fast sliding_puzzle 7,4,5,12,15,0,6,1,8,14,11,13,10,9,2,3"
+	User time (seconds): 38.82
+	System time (seconds): 5.74
+	Percent of CPU this job got: 97%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:45.76
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 7283248
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 2462812
+	Voluntary context switches: 0
+	Involuntary context switches: 43196
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 0
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 16384
+	Exit status: 0
+
+gtime --verbose ./astar_fast_template sliding_puzzle 7,4,5,12,15,0,6,1,8,14,11,13,10,9,2,3                                         46s Py base 12:03:07 am
+ 7  4  5 12
+15     6  1
+ 8 14 11 13
+10  9  2  3
+
+Solution Found. expanded: 24292757, nodes stored: 65884915, depth: 56, CPU time (s): 29.6956
+0 1 2 3 2 3 0 0 1 1 2 1 0 3 2 2 2 1 0 0 3 2 3 0 0 1 2 2 2 1 0 0 3 2 3 0 3 0 1 1 2 3 2 3 2 1 1 0 3 3 2 1 1 0 1 2
+	Command being timed: "./astar_fast_template sliding_puzzle 7,4,5,12,15,0,6,1,8,14,11,13,10,9,2,3"
+	User time (seconds): 30.16
+	System time (seconds): 2.22
+	Percent of CPU this job got: 96%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:33.51
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 6601328
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 825469
+	Voluntary context switches: 0
+	Involuntary context switches: 10281
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 0
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 16384
+	Exit status: 0

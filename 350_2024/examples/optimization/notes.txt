@@ -1,0 +1,9 @@
+perf record -g ./main
+perf report -g 'graph,0.5,caller'
+
+gprof main gmon.out > analysis.txt
+
+in bounds access
+unordered_map -> array
+hash
+vector actions return
